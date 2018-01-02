@@ -1,0 +1,11 @@
+// [Screen Size Mixin - edit styling for various screen sizes]
+$mobile: 600px;
+$tablet: 960px;
+$desktop: 1264px;
+$desktopXL: 1904px;
+
+@mixin screenSize($var) {
+  @media (min-width: $var) {
+    @content;
+  }
+}
