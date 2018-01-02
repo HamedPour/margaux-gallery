@@ -9,7 +9,7 @@
 
 ## Authors
 
-* **Hamed Pour** - *Initial work* - [HamedPour](https://github.com/HamedPour)
+* **Hamed Pour** - *VueFriend* - [HamedPour](https://github.com/HamedPour)
 
 
 ## License
@@ -18,4 +18,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Mart Rossmaa - for being a great mentor with hilarious rants. 
+* Mart Rossmaa - for being a great mentor with hilarious rants.
