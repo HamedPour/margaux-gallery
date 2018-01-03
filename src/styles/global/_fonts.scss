@@ -5,3 +5,13 @@
 $fontRoboto: 'Roboto Condensed', sans-serif;
 $fontOswald: 'Oswald', sans-serif;
 $fontAdvent: 'Advent Pro', sans-serif;
+
+.fontOswald {
+  font-family: $fontOswald;
+}
+.fontRoboCondens {
+  font-family: $fontRoboto;
+}
+.fontAdventPro {
+  font-family: $fontAdvent;
+}

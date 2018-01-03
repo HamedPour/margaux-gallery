@@ -1,6 +1,7 @@
 # Margaux Gallery
 
-> A vue and vuetify gallery
+> A Vue and Vuetify Gallery Webiste.
+
 ## Built With
 
 * [Vue.js](https://vuejs.org/) - The Progressive JavaScript Framework

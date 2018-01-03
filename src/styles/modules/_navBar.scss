@@ -1,0 +1,22 @@
+.navBar {
+  &--title {
+    letter-spacing: 5px !important;
+  }
+
+  &--linkBtn {
+    letter-spacing: 4px !important;
+    color: red;
+  }
+
+  &--drawerTitle {
+    letter-spacing: 3px;
+    font-size: 1.3rem;
+  }
+
+  &--drawerLinks{
+    font-family: $fontAdvent;
+    font-size: 2.3rem;
+    font-weight: 300;
+    margin-top: 20px;
+  }
+}
