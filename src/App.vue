@@ -3,7 +3,7 @@
 
     <!-- Navigation Bar [.navBar]-->
     <div>
-      <v-toolbar flat color="#fff">
+      <v-toolbar flat class="navBar">
         <v-toolbar-title>
           <router-link
             tag="span"
@@ -23,8 +23,8 @@
             :key="item.title"
             class="hidden-sm-and-down fontAdventPro">
           <v-btn
-            class="navBar--linkBtn"
-            :to="item.link"
+
+            :to="item.path"
             flat>
             {{item.title}}
           </v-btn>
@@ -63,7 +63,7 @@
         <v-list>
           <v-list-tile
               v-for="item in navItems"
-              :to="item.link"
+              :to="item.path"
               :key="item.title + '-drawer'">
             <v-list-tile-content>
               <v-list-tile-title
@@ -76,8 +76,13 @@
       </v-navigation-drawer>
 
     <!-- Main Content -->
-    <router-view></router-view>
-
+    <v-container style="padding:0">
+      <v-flex xs12>
+        <div transition="slide-x-transition">
+          <router-view></router-view>
+        </div>
+      </v-flex>
+    </v-container>
   </v-app>
 </template>
 
@@ -86,12 +91,12 @@
     data () {
       return {
         navItems: [
-          {title: 'Artists', link: '/artists'},
-          {title: 'Exibitions', link: '/exibitions'},
-          {title: 'Fairs', link: '/fairs'},
-          {title: 'News', link: '/news'},
-          {title: 'Gallery', link: '/gallery'},
-          {title: 'Contact', link: '/contact'}
+          {title: 'Artists', path: '/artists'},
+          {title: 'Exibitions', path: '/exibitions'},
+          {title: 'Fairs', path: '/fairs'},
+          {title: 'News', path: '/news'},
+          {title: 'Gallery', path: '/gallery'},
+          {title: 'Contact', path: '/contact'}
         ],
         drawerIsOpen: false
       }
