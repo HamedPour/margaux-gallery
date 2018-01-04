@@ -2,7 +2,7 @@
   width: 100%;
   height: 90vh;
 
-  &--mainTitle{
+  &--mainTitle {
     font-family: $fontOswald;
     font-weight: 300;
     letter-spacing: 1.3rem;
@@ -13,6 +13,18 @@
     opacity: 1 !important;
     @include screenSize($tablet) {
       font-size: 8rem;
+    }
+  }
+
+  &--downArrow {
+    position: absolute !important;
+    top: 90%;
+    left: 40%;
+    @include screenSize($tablet) {
+      left: 45%;
+    }
+    @include screenSize($desktop) {
+      left: 47%;
     }
   }
 }

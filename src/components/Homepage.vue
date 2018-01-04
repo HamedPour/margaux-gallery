@@ -4,8 +4,11 @@
         class="myCarousel"
         hide-delimiters
         hide-controls
-        lazy>
+        lazy
+        >
     <v-carousel-item
+        @click="toArtists"
+        style="cursor:pointer"
         transition="fade"
         reverseTransition="fade"
         v-for="(item,i) in images"
@@ -14,6 +17,10 @@
         <h1 class="homepage--mainTitle">MARGUAX</h1>
     </v-carousel-item>
   </v-carousel>
+  <v-btn fab dark small class="homepage--downArrow">
+    <v-icon style="font-size:2.7rem">expand_more
+    </v-icon>
+  </v-btn>
   </div>
 </template>
 
@@ -24,14 +31,16 @@
         images: [
           { src: '/src/assets/images/parisColors.jpeg' },
           { src: '/src/assets/images/ladyGallery.jpg' },
-          { src: '/src/assets/images/caveColors.jpeg' },
-          { src: '/src/assets/images/forestMist.jpg' },
-          { src: '/src/assets/images/winterWalk.jpeg' }
+          { src: '/src/assets/images/winterWalk.jpeg' },
+          { src: '/src/assets/images/jungleBridge.jpeg' },
+          { src: '/src/assets/images/caveColors.jpeg' }
         ]
+      }
+    },
+    methods: {
+      toArtists () {
+        this.$router.push('/artists')
       }
     }
   }
 </script>
-
-<style lang="css">
-</style>
