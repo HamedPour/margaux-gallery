@@ -1,34 +1,37 @@
 .homepage {
-  width: 100%;
-  height: 90vh;
 
   &--mainTitle {
+    cursor: pointer;
     font-family: $fontOswald;
     font-weight: 300;
-    letter-spacing: 1.3rem;
+    letter-spacing: 0.4rem;
     color: #000;
     text-shadow: 4px 3px 3px #fff;
     font-size: 5rem;
     z-index: 3 !important;
     opacity: 1 !important;
     @include screenSize($tablet) {
+      letter-spacing: 1.3rem;
       font-size: 8rem;
     }
   }
 
-  &--downArrow {
-    position: absolute !important;
-    top: 90%;
-    left: 40%;
-    @include screenSize($tablet) {
-      left: 45%;
-    }
-    @include screenSize($desktop) {
-      left: 47%;
-    }
+  &--subTitle {
+    cursor: pointer;
+    font-family: $fontAdvent;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 3px;
+    text-shadow: 0px 0px 15px #000;
+    position: absolute;
+    top: 75vh;
+    font-variant: small-caps;
+    z-index: 30;
   }
 }
 
+// Carousel
 .myCarousel{
-  height: 90vh !important;
+  height: 85vh !important;
 }

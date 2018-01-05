@@ -4,6 +4,10 @@
 @import "./global/_mixins";
 
 
-// Modular and component styles
+// Modulars styles
 @import "./modules/_navBar";
+@import "./modules/_para.scss";
+@import "./modules/_footer.scss";
+
+// Vue Components Styles
 @import "./modules/_homepage";

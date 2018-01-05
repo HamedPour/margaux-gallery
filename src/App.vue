@@ -37,7 +37,7 @@
             dark
             fixed
             temporary
-            height="50%"
+            height="60%"
             v-model="drawerIsOpen">
         <v-toolbar flat>
           <v-list>
@@ -78,11 +78,19 @@
     <!-- Main Content -->
     <v-container style="padding:0">
       <v-flex xs12>
-        <div transition="slide-x-transition">
+        <div>
           <router-view></router-view>
         </div>
       </v-flex>
     </v-container>
+
+    <!-- Footer -->
+    <v-footer class="footer pa-4">
+      <v-spacer></v-spacer>
+      <div>Hamed Pour © {{ new Date().getFullYear() }}</div>
+      <v-spacer></v-spacer>
+    </v-footer>
+
   </v-app>
 </template>
 
