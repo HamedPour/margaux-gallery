@@ -44,7 +44,7 @@ export default new Router({
       component: Gallery
     },
     {
-      path: '/galleryitem',
+      path: '/gallery/:id',
       name: 'GalleryItem',
       component: GalleryItem
     },

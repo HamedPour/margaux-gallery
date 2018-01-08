@@ -1,7 +1,7 @@
 <template lang="html">
   <v-container class="gallery">
     <v-flex mt-4>
-      <h1 class="text-xs-center fontOswald display-3">Gallery</h1>
+      <h1 class="gallery--mainTitle text-xs-center fontOswald">Gallery</h1>
     </v-flex>
     <v-layout>
         <v-flex xs12 lg8 offset-lg2 pt-5>
@@ -27,7 +27,7 @@
                     <v-card-title>
                       <div>
                         <h3
-                          class="gallery--mainTitle fontRoboCondens fontCaps">
+                          class="gallery--artists fontRoboCondens fontCaps">
                           {{item.artistName}}
                         </h3>
                       </div>
@@ -46,7 +46,7 @@
                     </div>
                     <v-card-actions>
                       <v-spacer></v-spacer>
-                      <v-btn @click="openDialog" right>
+                      <v-btn right>
                         View
                       </v-btn>
                     </v-card-actions>
