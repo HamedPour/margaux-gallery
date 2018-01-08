@@ -9,8 +9,8 @@
           >
       <v-carousel-item
           transition="fade"
-          v-for="(item,i) in images"
-          v-bind:src="item.src"
+          v-for="(item,i) in galleryImages"
+          v-bind:src="item.imgSrc"
           :key="i">
           <router-link
             :to="{ name: 'Gallery'}"
@@ -20,7 +20,7 @@
           </router-link>
           <router-link
           class="homepage--subTitle"
-          :to="{ name: 'exhibitions'}"
+          :to="{ name: 'Exhibition'}"
           tag="span">
           exhibitions
         </router-link>
@@ -32,15 +32,9 @@
 
 <script>
   export default {
-    data () {
-      return {
-        images: [
-          { src: '/src/assets/images/parisColors.jpg' },
-          { src: '/src/assets/images/ladyGallery.jpg' },
-          { src: '/src/assets/images/winterWalk.jpg' },
-          { src: '/src/assets/images/jungleBridge.jpg' },
-          { src: '/src/assets/images/caveColors.jpg' }
-        ]
+    computed: {
+      galleryImages () {
+        return this.$store.getters.galleryData
       }
     }
   }

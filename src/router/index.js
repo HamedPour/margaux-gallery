@@ -7,6 +7,7 @@ import Fairs from '@/components/Fairs'
 import News from '@/components/News'
 import Gallery from '@/components/Gallery'
 import Contact from '@/components/Contact'
+import GalleryItem from '@/components/GalleryItem'
 
 Vue.use(Router)
 
@@ -23,7 +24,7 @@ export default new Router({
       component: Artists
     },
     {
-      path: '/exibitions',
+      path: '/exibition',
       name: 'Exhibition',
       component: Exhibition
     },
@@ -41,6 +42,11 @@ export default new Router({
       path: '/gallery',
       name: 'Gallery',
       component: Gallery
+    },
+    {
+      path: '/galleryitem',
+      name: 'GalleryItem',
+      component: GalleryItem
     },
     {
       path: '/contact',

@@ -15,3 +15,15 @@ $fontAdvent: 'Advent Pro', sans-serif;
 .fontAdventPro {
   font-family: $fontAdvent;
 }
+
+.fontCaps {
+  font-variant: small-caps;
+}
+
+.fontJustify {
+  text-align: justify;
+}
+
+.fontSpread {
+  letter-spacing: 3px !important;
+}
