@@ -20,9 +20,9 @@
           </router-link>
           <router-link
           class="homepage--subTitle"
-          :to="{ name: 'Exibitions'}"
+          :to="{ name: 'exhibitions'}"
           tag="span">
-          exibitions
+          exhibitions
         </router-link>
       </v-carousel-item>
     </v-carousel>

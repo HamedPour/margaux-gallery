@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Homepage from '@/components/Homepage'
 import Artists from '@/components/Artists'
-import Exibitions from '@/components/Exibitions'
+import Exhibition from '@/components/Exhibition'
 import Fairs from '@/components/Fairs'
 import News from '@/components/News'
 import Gallery from '@/components/Gallery'
@@ -24,8 +24,8 @@ export default new Router({
     },
     {
       path: '/exibitions',
-      name: 'Exibitions',
-      component: Exibitions
+      name: 'Exhibition',
+      component: Exhibition
     },
     {
       path: '/fairs',

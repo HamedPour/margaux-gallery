@@ -100,7 +100,7 @@
       return {
         navItems: [
           {title: 'Artists', path: '/artists'},
-          {title: 'Exibitions', path: '/exibitions'},
+          {title: 'Exhibitions', path: '/exhibitions'},
           {title: 'Fairs', path: '/fairs'},
           {title: 'News', path: '/news'},
           {title: 'Gallery', path: '/gallery'},
