@@ -15,11 +15,7 @@
                   xs12 md6
                 >
                   <v-card flat>
-                    <v-card-media
-                      :src="item.imgSrc"
-                      height="300px"
-                      >
-                    </v-card-media>
+                    <v-parallax height="300" :src="item.imgSrc"></v-parallax>
                   </v-card>
                 </v-flex>
                 <v-flex md6 pl-2>
