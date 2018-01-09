@@ -6,12 +6,15 @@ $fontRoboto: 'Roboto Condensed', sans-serif;
 $fontOswald: 'Oswald', sans-serif;
 $fontAdvent: 'Advent Pro', sans-serif;
 
+// font for main Headline and Titles
 .fontOswald {
   font-family: $fontOswald;
 }
+// font for text and other generic stuff
 .fontRoboCondens {
   font-family: $fontRoboto;
 }
+// font for links and work titles
 .fontAdventPro {
   font-family: $fontAdvent;
 }

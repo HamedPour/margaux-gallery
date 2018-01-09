@@ -35,7 +35,7 @@
                     <div>
                       <div>
                         <h5 class="headline fontCaps fontAdventPro pl-3">
-                          {{item.artistWorks[0]}}
+                          {{item.workOnDisplay}}
                         </h5>
                       </div>
                     </div>
@@ -46,7 +46,7 @@
                     </div>
                     <v-card-actions>
                       <v-spacer></v-spacer>
-                      <v-btn right>
+                      <v-btn @click="toGalleryItem(item.uid)" right>
                         View
                       </v-btn>
                     </v-card-actions>
@@ -61,21 +61,20 @@
 </template>
 
 <script>
-  import dialogComp from '@/components/GalleryItem'
   export default {
     data () {
       return {
       }
     },
-    components: {
-      dialogComp
+    methods: {
+      toGalleryItem (uid) {
+        this.$router.push('/gallery/' + uid)
+      }
     },
     computed: {
       galleryData () {
         return this.$store.getters.galleryData
       }
-    },
-    methods: {
     }
   }
 </script>

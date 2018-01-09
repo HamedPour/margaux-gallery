@@ -24,7 +24,7 @@ export default new Router({
       component: Artists
     },
     {
-      path: '/exibition',
+      path: '/exhibition',
       name: 'Exhibition',
       component: Exhibition
     },
@@ -44,7 +44,8 @@ export default new Router({
       component: Gallery
     },
     {
-      path: '/gallery/:id',
+      path: '/gallery/:uid',
+      props: true,
       name: 'GalleryItem',
       component: GalleryItem
     },
