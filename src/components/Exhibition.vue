@@ -29,8 +29,6 @@
                  </div>
                  <v-divider dark></v-divider>
                  <div>
-                   <h4 class="exhibition--rightContainer__headline pl-3">Works by great french artistis:
-                   </h4>
                    <JanExhibition v-if="isFeb"></JanExhibition>
                    <FebExhibition v-if="!isFeb"></FebExhibition>
                  </div>
