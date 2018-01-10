@@ -1,8 +1,9 @@
 .exhibition {
-  &--jumbotron {
+  &--bg {
     background-color: rgba(#000 , 0.5);
     background-image: url('../assets/images/paris.jpg');
     background-size: cover;
+    background-repeat: no-repeat;
     background-blend-mode: overlay;
   }
 
