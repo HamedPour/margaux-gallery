@@ -10,6 +10,7 @@
             <h3
               class="display-2
                     font
+                    fontCaps
                     fontAdventPro
                     mb-4"
             >{{galleryItem.workOnDisplay}}
@@ -45,7 +46,6 @@ export default {
   props: ['uid'],
   computed: {
     galleryItem () {
-      console.log(this.$store.getters.galleryItem(this.uid))
       return this.$store.getters.galleryItem(this.uid)
     }
   }

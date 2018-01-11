@@ -2,10 +2,10 @@
   <v-container class="exhibition--bg">
     <v-flex xl10 offset-xl1>
         <v-parallax
-          height="80vh"
+        height="100%"
           jumbotron
         >
-          <v-container >
+          <v-container style="min-height:80vh">
             <v-layout dark row wrap>
               <v-flex md7>
                  <h1
@@ -16,21 +16,32 @@
                    Exhibition: <br>Birth of Modernity
                  </h1>
                  <h5 class="pt-5 pl-3 subheading">
-                   Currently open to the public at the vibrant <b class="title">Musée d'Orsay</b>
+                   Currently open to the public at the vibrant <b class="title"> <br>Musée d'Orsay</b>
                  </h5>
-                 <div class="fontJustify subheading pt-5 mt-5 ml-5" style="max-width:400px;">
-                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                 <div class="bioBox">
+                   <p v-if="bioIsVisible">{{artistBio}}</p>
                  </div>
               </v-flex>
               <v-flex class="exhibition--rightContainer">
                  <div>
-                   <v-btn dark flat @click="isFeb=true">January</v-btn>
-                   <v-btn dark flat @click="isFeb=false">February</v-btn>
+                   <v-btn dark flat
+                      @click="isFeb=true; bioIsVisible=false">
+                    January
+                   </v-btn>
+                   <v-btn dark flat
+                      @click="isFeb=false; bioIsVisible=false">
+                    February
+                   </v-btn>
                  </div>
                  <v-divider dark></v-divider>
                  <div>
-                   <JanExhibition v-if="isFeb"></JanExhibition>
-                   <FebExhibition v-if="!isFeb"></FebExhibition>
+                   <JanExhibition
+                      v-if="isFeb"
+                      @passArtistBio="setArtistBio($event)">
+                   </JanExhibition>
+                   <FebExhibition v-if="!isFeb"
+                      @passArtistBio="setArtistBio($event)">
+                   </FebExhibition>
                  </div>
                </v-flex>
             </v-layout>
@@ -48,14 +59,19 @@ export default {
     'JanExhibition': JanuaryExhibition,
     'FebExhibition': FebruaryExhibition
   },
+  methods: {
+    setArtistBio (event) {
+      this.bioIsVisible = !this.bioIsVisible
+      this.artistBio = event
+    }
+  },
   data () {
     return {
+      artistBio: '',
       isFeb: true,
+      bioIsVisible: false,
       backgroundImage: '../src/assets/images/paris.jpg'
     }
   }
 }
 </script>
-
-<style scoped>
-</style>
