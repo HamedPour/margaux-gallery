@@ -1,10 +1,62 @@
 <template lang="html">
-  <h1>Artists</h1>
+  <v-container grid-list-xl>
+    <v-flex >
+      <h1 class="text-xs-center display-3 pa-3 mb-3 fontOswald">Artists</h1>
+    </v-flex>
+    <v-layout row wrap>
+      <v-flex  xs12 md6 xl3 v-for="(artist, index) in galleryData" :key="index">
+        <v-card>
+        <v-container>
+          <v-layout style="min-height: 600px" row wrap>
+              <v-flex >
+                <v-card flat>
+                  <v-card-media
+                    :src="'../' + artist.artistImage"
+                    style="width: 100%;min-height: 400px; cursor:pointer"
+                    @click="toArtistWorks(artist.uid)"
+                  >
+                  </v-card-media>
+                  <h1
+                      class="
+                              text-xs-center
+                              fontCaps
+                              fontOswald
+                              fontSpread"
+                    >{{artist.artistName}}
+                  </h1>
+                  <h3
+                      class="
+                              fontCaps
+                              title
+                              pt-2
+                              pb-2
+                              text-xs-center"
+                    >artwork: {{artist.workOnDisplay}}
+                  </h3>
+                  <p class="text-xs-center pr-3 pl-3">{{artist.details}}</p>
+                </v-card>
+              </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-export default {
-}
+  export default {
+    methods: {
+      toArtistWorks (id) {
+        return this.$router.push('/gallery/' + id)
+      }
+    },
+    computed: {
+      galleryData () {
+        return this.$store.getters.galleryData
+      }
+    }
+  }
 </script>
 
 <style lang="css">

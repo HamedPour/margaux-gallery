@@ -1,6 +1,6 @@
 .exhibition {
   &--bg {
-    background-color: rgba(#000 , 0.5);
+    background-color: rgba(#000 , 0.6);
     background-image: url('../assets/images/paris.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -14,9 +14,29 @@
     font-weight: 300;
   }
 
+  &--bioBox{
+    margin-top: 40px;
+    text-align: justify;
+    font-size: 1.5rem;
+    font-family: $fontRoboto;
+    max-width: 600px;
+  }
+
+  &--musee > img{
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.8);
+    @include screenSize($desktop) {
+      margin: 50px 0px 0px 80px;
+    };
+  }
+
   &--rightContainer {
     width: 300px;
-    margin: 150px 10px 0px 0px;
-
+    margin: 30px 10px 0px 0px;
+    @include screenSize($desktop){
+      margin-top: 150px;
+    };
   }
 }

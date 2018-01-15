@@ -15,11 +15,14 @@
                         ">
                    Exhibition: <br>Birth of Modernity
                  </h1>
-                 <h5 class="pt-5 pl-3 subheading">
-                   Currently open to the public at the vibrant <b class="title"> <br>Musée d'Orsay</b>
+                 <h5 class="pt-2 body-2">
+                   Currently open to the public at the vibrant Musée d'Orsay
                  </h5>
-                 <div class="bioBox">
+                 <div class="exhibition--bioBox">
                    <p v-if="bioIsVisible">{{artistBio}}</p>
+                 </div>
+                 <div v-if="!bioIsVisible" class="exhibition--musee">
+                   <img src="src/assets/images/musee.jpg">
                  </div>
               </v-flex>
               <v-flex class="exhibition--rightContainer">

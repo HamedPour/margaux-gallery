@@ -1,0 +1,22 @@
+.news {
+  text-align: center;
+  &--leftImageHolder {
+    border-radius: 2%;
+    box-shadow: 2px 2px 3px rgba(#000, 0.6);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 250px;
+    max-height: 350px;
+    width: 100%;
+    min-width:300px;
+    max-width:350px;
+    @include screenSize($desktop){
+      height: 250px;
+      max-width: 300px;
+    };
+    @include screenSize($desktopXL){
+      height: 400px;
+      max-width: 450px;
+    };
+  }
+}
