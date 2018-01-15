@@ -9,7 +9,7 @@
                   v-for="(item, index) in theNews"
                   :key="index"
                   style="cursor:pointer"
-                  @click="toNewDetails(item.source.id)"
+                  @click="passNewsItem(item.uid)"
                   class="mb-3">
               <v-flex  xs12 md7>
                 <div >
@@ -30,21 +30,22 @@
           </v-container>
         </v-flex>
         <v-flex xs12 lg6>
-          <div class="mt-3">
-            <img  style="max-width:350px;" src="../assets/images/winterTrees.jpg" alt="">
-          </div>
-          <h1>{{}}</h1>
+          <NewsDetails :uid="this.currentId"></NewsDetails>
         </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import NewsDetails from './NewsDetails.vue'
 export default {
   data () {
     return {
-      currentNewsItem: null
+      currentId: 'bobby'
     }
+  },
+  components: {
+    'NewsDetails': NewsDetails
   },
   computed: {
     theNews () {
@@ -52,8 +53,8 @@ export default {
     }
   },
   methods: {
-    toNewDetails (id) {
-      // pass the id into store and find the set of data associated with the id
+    passNewsItem (id) {
+      this.currentId = id
     }
   }
 }

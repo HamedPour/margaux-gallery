@@ -45,6 +45,7 @@ export const store = new Vuex.Store({
           id: 'global.com777938',
           name: 'Global News Network'
         },
+        uid: 'fuovhloesrhglkjbvz',
         imgUrl: '/src/assets/images/winterTrees.jpg',
         author: 'Ed O\'Raiely',
         title: 'The Globe Theator opens display great french works of art of the 19th century',
@@ -56,6 +57,7 @@ export const store = new Vuex.Store({
           id: 'CNN-4857367384',
           name: 'CNN'
         },
+        uid: 'iuizurhg87zyz',
         imgUrl: '/src/assets/images/winterTrees.jpg',
         author: 'Jack Bakerstreet',
         title: 'Opening of the great Chateau Library in Paris',
@@ -67,6 +69,7 @@ export const store = new Vuex.Store({
           id: 'BBC-859847593845',
           name: 'BBC'
         },
+        uid: 'ou7y87ysygdifygfdy',
         imgUrl: '/src/assets/images/winterTrees.jpg',
         author: 'Havash Naseem',
         title: 'Rise of the Machines: Trump to make wall to against robots',
@@ -95,6 +98,13 @@ export const store = new Vuex.Store({
     },
     theNews (state) {
       return state.theNews
+    },
+    theNewsItem (state) {
+      return (itemID) => {
+        return state.theNews.find((item) => {
+          return item.uid === itemID
+        })
+      }
     }
   }
 })
