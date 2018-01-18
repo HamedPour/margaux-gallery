@@ -8,7 +8,7 @@
       <v-flex  xs12 md6 xl3 v-for="(artist, index) in galleryData" :key="index">
         <v-card>
         <v-container>
-          <v-layout style="min-height: 600px" row wrap>
+          <v-layout style="height:580px" row wrap>
               <v-flex >
                 <v-card flat>
                   <v-card-media

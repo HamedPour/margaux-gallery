@@ -23,7 +23,6 @@
               :key="item.title"
               class="hidden-sm-and-down fontAdventPro">
             <v-btn
-
               :to="item.path"
               flat>
               {{item.title}}
@@ -77,12 +76,9 @@
 
       <!-- Main Content -->
 
-
           <div>
-            <router-view></router-view>
+                <router-view></router-view>
           </div>
-
-
 
       <!-- Footer -->
       <v-footer class="footer pa-4">
