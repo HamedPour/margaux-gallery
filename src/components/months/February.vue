@@ -1,6 +1,9 @@
 <template lang="html">
   <v-container class="fontCaps ">
     <h3 class="display-1 fontAdventPro pb-2">Berthe Morisot: the new world</h3>
+    <p>
+      The portrait shows the subject sitting upright and sideways in a chair, with her face and chest turned slightly towards the viewer: a posture derived from the 'pyramid' image used to depict a sitting Madonna. Her left arm sits comfortably on the armrest of the chair and is clasped by the hand of her right arm which crosses her front. The slightly protective position of her arms, as well as the armrest, creates a sense of distance between sitter and spectator.
+    </p>
     <p class="title fontAdventPro">An exibition to benefit great london street children's hospital</p>
     <span >12-22 January 2018</span>
     <v-divider class="mb-1 mt-1" dark></v-divider>

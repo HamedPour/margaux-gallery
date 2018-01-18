@@ -1,7 +1,8 @@
 <template lang="html">
   <v-container grid-list-xl>
     <v-flex >
-      <h1 class="text-xs-center display-3 pa-3 mb-3 fontOswald">Artists</h1>
+      <h1 class="text-xs-center display-3 mt-3 fontAdventPro">Artists</h1>
+      <v-divider class="mb-5"></v-divider>
     </v-flex>
     <v-layout row wrap>
       <v-flex  xs12 md6 xl3 v-for="(artist, index) in galleryData" :key="index">
@@ -12,7 +13,7 @@
                 <v-card flat>
                   <v-card-media
                     :src="'../' + artist.artistImage"
-                    style="width: 100%;min-height: 400px; cursor:pointer"
+                    style="width: 100%;min-height: 300px; cursor:pointer"
                     @click="toArtistWorks(artist.uid)"
                   >
                   </v-card-media>

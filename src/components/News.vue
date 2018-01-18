@@ -1,6 +1,7 @@
 <template lang="html">
   <v-container>
-    <h1 class="display-3 mt-5 mb-5 fontOswald text-xs-center">News</h1>
+    <h1 class="display-3 mt-3 fontAdventPro text-xs-center">News</h1>
+    <v-divider class="mb-5"></v-divider>
     <v-layout class="news" wrap>
         <v-flex xs12 lg6>
           <v-container>

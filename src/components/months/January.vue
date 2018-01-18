@@ -1,6 +1,9 @@
 <template lang="html">
   <v-container class="fontCaps ">
     <h3 class="display-1 fontAdventPro pb-2">Élisabeth vigée le brun: winter of the mind</h3>
+    <p>
+      he general impression created by the Mona Lisa portrait is one of great serenity, enriched by a definite air of mystery. The serenity comes from the muted colour scheme, the soothing sfumato tonality, and the harmony created by the sitter's pyramid-shaped pose and understated drapery. The mystery stems from a number of factors: first, her enigmatic half-smile; second, her gaze, which is directed to the right of the viewer; her hands which have a slightly unreal, lifeless quality - almost as if they belonged to a different body.
+    </p>
     <p class="title fontAdventPro">An exibition to benefit great london street children's hospital</p>
     <span >12-22 January 2018</span>
     <v-divider class="mb-1 mt-1" dark></v-divider>

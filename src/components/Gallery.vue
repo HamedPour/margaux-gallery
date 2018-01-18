@@ -1,7 +1,8 @@
 <template lang="html">
   <v-container class="gallery">
     <v-flex mt-4>
-      <h1 class="gallery--mainTitle text-xs-center fontOswald">Gallery</h1>
+      <h1 class="gallery--mainTitle text-xs-center fontAdventPro">Gallery</h1>
+      <v-divider></v-divider>
     </v-flex>
     <v-layout>
         <v-flex xs12 lg8 offset-lg2 pt-5>
