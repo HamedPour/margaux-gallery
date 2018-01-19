@@ -24,7 +24,8 @@
 
   &--musee > img{
     width: 100%;
-    max-width: 400px;
+    height: 350px;
+    max-width: 450px;
     border-radius: 10px;
     box-shadow: 4px 4px 4px rgba(0,0,0,0.8);
     @include screenSize($desktop) {

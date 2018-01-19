@@ -19,32 +19,31 @@
                    Currently open to the public at the vibrant Musée d'Orsay
                  </h5>
                  <div class="exhibition--bioBox">
-                   <p v-if="bioIsVisible">{{artistBio}}</p>
+                   <p>{{Biography}}</p>
                  </div>
-                 <div v-if="!bioIsVisible" class="exhibition--musee">
+                 <div v-if="!Biography" class="exhibition--musee">
                    <img src="src/assets/images/musee.jpg">
                  </div>
               </v-flex>
               <v-flex class="exhibition--rightContainer">
                  <div>
-                   <v-btn dark flat
-                      @click="isFeb=true; bioIsVisible=false">
-                    January
-                   </v-btn>
-                   <v-btn dark flat
-                      @click="isFeb=false; bioIsVisible=false">
-                    February
+                   <v-btn
+                        v-for="(item, index) in exhibitionMonth"
+                        :key="index"
+                        @click="sendMonth(item.month)"
+                        dark
+                        flat
+                      >
+                    {{item.month}}
                    </v-btn>
                  </div>
                  <v-divider dark></v-divider>
                  <div>
-                   <JanExhibition
-                      v-if="isFeb"
-                      @passArtistBio="setArtistBio($event)">
-                   </JanExhibition>
-                   <FebExhibition v-if="!isFeb"
-                      @passArtistBio="setArtistBio($event)">
-                   </FebExhibition>
+                   <ExhibitionMonth
+                      :monthNow="currentMonth"
+                      @passedBio="updateBio($event)"
+                      >
+                   </ExhibitionMonth>
                  </div>
                </v-flex>
             </v-layout>
@@ -55,24 +54,29 @@
 </template>
 
 <script>
-import JanuaryExhibition from './months/January.vue'
-import FebruaryExhibition from './months/February.vue'
+import ExhibitionMonth from './months/ExhibitionMonth.vue'
 export default {
   components: {
-    'JanExhibition': JanuaryExhibition,
-    'FebExhibition': FebruaryExhibition
+    'ExhibitionMonth': ExhibitionMonth
   },
   methods: {
-    setArtistBio (event) {
-      this.bioIsVisible = !this.bioIsVisible
-      this.artistBio = event
+    sendMonth (theMonth) {
+      this.currentMonth = theMonth
+      this.Biography = ''
+    },
+    updateBio (event) {
+      this.Biography = event
+    }
+  },
+  computed: {
+    exhibitionMonth () {
+      return this.$store.getters.exhibition2018
     }
   },
   data () {
     return {
-      artistBio: '',
-      isFeb: true,
-      bioIsVisible: false,
+      currentMonth: 'January',
+      Biography: '',
       backgroundImage: '../src/assets/images/paris.jpg'
     }
   }

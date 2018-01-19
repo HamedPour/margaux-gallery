@@ -39,6 +39,24 @@ export const store = new Vuex.Store({
         workOnDisplay: 'The Garden at Bougival'
       }
     ],
+    exhibitions2018: [
+      {
+        month: 'January',
+        exhibitionDays: '14 - 18',
+        artist: 'Élisabeth vigée le brun',
+        artistBio: 'Born in Paris on 16 April 1755, Marie-Louise-Élisabeth Vigée was the daughter of a portraitist and fan painter, Louis Vigée, from whom she received her first instruction. Her mother, Jeanne (née Maissin), was a hairdresser.',
+        painting: 'the bather',
+        description: 'he general impression created by the Bather portrait is one of great serenity, enriched by a definite air of mystery. The serenity comes from the muted colour scheme, the soothing sfumato tonality, and the harmony created by the sitter\'s pyramid-shaped pose and understated drapery. '
+      },
+      {
+        month: 'February',
+        exhibitionDays: '19 - 28',
+        artist: 'Berthe Morisot',
+        artistBio: 'Morisot was born in Bourges, France, into an affluent bourgeois family. Her father, Edmé Tiburce Morisot, was the prefect (senior administrator) of the department of Cher. He also studied architecture at École des Beaux Arts. Her mother, Marie-Joséphine-Cornélie Thomas, was the great-niece of Jean-Honoré Fragonard, one of the most prolific Rococo painters of the ancien régime.',
+        painting: 'the garden at bougival',
+        description: 'The portrait shows the subject sitting upright and sideways in a chair, with her face and chest turned slightly towards the viewer: a posture derived from the \'pyramid\' image used to depict a sitting Madonna. Her left arm sits comfortably on the armrest of the chair and is clasped by the hand of her right arm which crosses her front.'
+      }
+    ],
     theNews: [
       {
         source: {
@@ -95,6 +113,9 @@ export const store = new Vuex.Store({
           return item.uid === itemID
         })
       }
+    },
+    exhibition2018 (state) {
+      return state.exhibitions2018
     },
     theNews (state) {
       return state.theNews
