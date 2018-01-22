@@ -1,6 +1,6 @@
 <template lang="html">
   <v-layout>
-    <v-flex>
+    <v-flex  v-show="newsItem">
       <img :src="newsItem.urlToImage"
           style="
             width: 100%;
@@ -23,7 +23,11 @@ export default {
   props: ['uid'],
   computed: {
     newsItem () {
-      return this.$store.getters.theNewsItem(this.uid)
+      if (this.$store.getters.theNewsItem(this.uid) === undefined) {
+        return false
+      } else {
+        return this.$store.getters.theNewsItem(this.uid)
+      }
     }
   }
 }

@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import ExhibitionMonth from './months/ExhibitionMonth.vue'
+import ExhibitionMonth from './ExhibitionMonth.vue'
 export default {
   components: {
     'ExhibitionMonth': ExhibitionMonth

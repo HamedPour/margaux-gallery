@@ -12,7 +12,7 @@
               <v-flex >
                 <v-card flat>
                   <v-card-media
-                    :src="'../' + artist.artistImage"
+                    :src="artist.artistImage"
                     style="width: 100%;min-height: 300px; cursor:pointer"
                     @click="toArtistWorks(artist.uid)"
                   >

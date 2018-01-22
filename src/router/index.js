@@ -7,6 +7,7 @@ import News from '@/components/News'
 import Gallery from '@/components/Gallery'
 import Contact from '@/components/Contact'
 import GalleryItem from '@/components/GalleryItem'
+import Submission from '@/components/Submission'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
       props: true,
       name: 'GalleryItem',
       component: GalleryItem
+    },
+    {
+      path: '/submission',
+      name: 'Submission',
+      component: Submission
     },
     {
       path: '/contact',
