@@ -112,6 +112,9 @@ export const store = new Vuex.Store({
   },
   // -------------------------------------------------------------------ACTIONS
   actions: {
+    autoSignIn ({commit}, payload) {
+      commit('setUser', {id: payload.uid})
+    },
     SignInUser ({commit}, playload) {
       firebase.auth().signInWithEmailAndPassword(playload.email, playload.password)
         .then(
@@ -124,6 +127,10 @@ export const store = new Vuex.Store({
         .catch(error => {
           console.log(error)
         })
+    },
+    SignOutUser ({commit}) {
+      firebase.auth().signOut()
+      commit('setUser', null)
     }
   },
   // -------------------------------------(To Send to Comp)-------------GETTERS

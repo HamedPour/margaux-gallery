@@ -2,12 +2,12 @@
   <div>
     <v-container>
       <v-layout>
-        <v-flex>
+        <v-flex xs12 lg6 offset-lg3>
+          <h1 class="display-2 fontCaps mb-5 mt-5"
+            style="text-align:center"
+          >artwork submission</h1>
           <form>
             <v-card>
-              <v-card-title>
-                <span class="headline">Artwork Submission</span>
-              </v-card-title>
               <v-card-text>
                 <v-container grid-list-md >
                   <v-layout wrap>
@@ -26,7 +26,7 @@
                       </v-text-field>
                     </v-flex>
                     <v-flex xs12>
-                      <v-text-field label="???" required></v-text-field>
+                      <v-text-field label="Description" multi-line></v-text-field>
                     </v-flex>
                     <v-flex xs12>
                       <v-text-field label="???" type="password" required></v-text-field>
@@ -37,21 +37,30 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="blue darken-1" flat >Submit</v-btn>
-                <v-btn color="blue darken-1" flat >Log Off</v-btn>
+                <v-btn color="blue darken-1" flat @click="onLogout">Log Out</v-btn>
               </v-card-actions>
             </v-card>
           </form>
         </v-flex>
       </v-layout>
     </v-container>
+    <!-- Dialog Login Box -->
     <v-container>
+    {{checkUser}}
       <v-layout>
         <v-dialog v-model="lockDialog" persistent max-width="400">
-          <form @submit.prevent="onLogin">
+          <v-flex style="text-align:center">
+            <h1
+            v-if="!lockDialog"
+            class="display-3 fontCaps pr-3 pl-2"
+            style="width:100%; background: white; border-bottom: 1px solid black"
+            >{{welcomeMsg}}</h1>
+          </v-flex>
+          <form v-if="lockDialog" @submit.prevent="onLogin">
             <v-card>
               <v-card-title>
                 <v-spacer></v-spacer>
-                <span class="display-1 fontCaps">login - {{currentUser.id}}</span>
+                <span class="display-1 fontCaps">login</span>
                 <v-spacer></v-spacer>
               </v-card-title>
               <v-card-text>
@@ -96,7 +105,8 @@ export default {
     return {
       lockDialog: true,
       email: '',
-      password: ''
+      password: '',
+      welcomeMsg: 'Welcome'
     }
   },
   methods: {
@@ -109,15 +119,22 @@ export default {
         password: this.password
       }
       this.$store.dispatch('SignInUser', userLoginData)
+    },
+    onLogout () {
+      this.$store.dispatch('SignOutUser')
     }
   },
   computed: {
     currentUser () {
-      if (this.$store.getters.user.id !== null) {
-        console.log(this.lockDialog)
+      return this.$store.getters.user
+    },
+    checkUser () {
+      if (this.currentUser === null || this.currentUser === undefined) {
+        this.lockDialog = true
+        this.password = ''
+      } else if (this.currentUser.id !== null) {
         this.lockDialog = false
       }
-      return this.$store.getters.user
     }
   }
 }
