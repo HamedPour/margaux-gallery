@@ -21,6 +21,7 @@
                       class="
                               text-xs-center
                               fontCaps
+                              mt-4
                               fontOswald
                               fontSpread"
                     >{{artist.artistName}}
@@ -29,8 +30,8 @@
                       class="
                               fontCaps
                               title
-                              pt-2
-                              pb-2
+                              pt-4
+                              pb-4
                               text-xs-center"
                     >artwork: {{artist.workOnDisplay}}
                   </h3>

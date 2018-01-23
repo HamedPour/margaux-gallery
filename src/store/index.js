@@ -9,6 +9,12 @@ export const store = new Vuex.Store({
     user: {
       id: null
     },
+    submissions: {
+      artistName: null,
+      artworkTitle: null,
+      artDescription: null,
+      artworkURL: null
+    },
     galleryData: [
       {
         uid: '001',
@@ -108,6 +114,14 @@ export const store = new Vuex.Store({
   mutations: {
     setUser (state, payload) {
       state.user = payload
+    },
+    submissions (state, payload) {
+      state.submissions = {
+        artistName: payload.artistName,
+        artworkTitle: payload.artworkTitle,
+        artDescription: payload.artDescription,
+        artworkURL: payload.artImage
+      }
     }
   },
   // -------------------------------------------------------------------ACTIONS
@@ -119,7 +133,6 @@ export const store = new Vuex.Store({
       firebase.auth().signInWithEmailAndPassword(playload.email, playload.password)
         .then(
           user => {
-            console.log(user)
             const newUser = {id: user.uid}
             commit('setUser', newUser)
           }
@@ -131,6 +144,9 @@ export const store = new Vuex.Store({
     SignOutUser ({commit}) {
       firebase.auth().signOut()
       commit('setUser', null)
+    },
+    newSubmission ({commit}, payload) {
+      commit('submissions', payload)
     }
   },
   // -------------------------------------(To Send to Comp)-------------GETTERS
@@ -162,6 +178,9 @@ export const store = new Vuex.Store({
           return item.uid === itemID
         })
       }
+    },
+    submittedData (state) {
+      return state.submissions
     }
   }
 })

@@ -16,7 +16,7 @@
                    Exhibition: <br>Birth of Modernity
                  </h1>
                  <h5 class="pt-2 body-2">
-                   Currently open to the public at the vibrant Musée d'Orsay
+                   Currently open to the public until April the 29th at the Inception Gallery, Paris.
                  </h5>
                  <div class="exhibition--bioBox">
                    <p>{{Biography}}</p>
