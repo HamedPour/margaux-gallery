@@ -13,7 +13,8 @@ export const store = new Vuex.Store({
       artistName: null,
       artworkTitle: null,
       artDescription: null,
-      artworkURL: null
+      artworkURL: null,
+      id: null
     },
     galleryData: [
       {
@@ -116,11 +117,13 @@ export const store = new Vuex.Store({
       state.user = payload
     },
     submissions (state, payload) {
+      console.log(payload)
       state.submissions = {
         artistName: payload.artistName,
         artworkTitle: payload.artworkTitle,
         artDescription: payload.artDescription,
-        artworkURL: payload.artImage
+        artworkURL: payload.artImage,
+        id: payload.id
       }
     }
   },
@@ -146,7 +149,19 @@ export const store = new Vuex.Store({
       commit('setUser', null)
     },
     newSubmission ({commit}, payload) {
-      commit('submissions', payload)
+      // send data to firebase
+      firebase.database().ref('submissions').push(payload)
+        .then((data) => {
+          const key = data.key
+          console.log(data.key)
+          commit('submissions', {
+            ...payload,
+            id: key
+          })
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   },
   // -------------------------------------(To Send to Comp)-------------GETTERS
@@ -178,9 +193,6 @@ export const store = new Vuex.Store({
           return item.uid === itemID
         })
       }
-    },
-    submittedData (state) {
-      return state.submissions
     }
   }
 })

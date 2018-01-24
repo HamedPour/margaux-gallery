@@ -62,12 +62,12 @@
     <!-- Submission Processing Dialog -->
     <v-container>
       <v-layout row justify-center>
-          <v-dialog v-model="submissionCompleted" persistent max-width="300">
+          <v-dialog v-model="submissionCompleted" max-width="300">
             <v-card>
               <v-card-title class="headline">
-                Dear {{submittedData.artistName}}
+                Thank You
               </v-card-title>
-              <v-card-text style="text-align:justify">Thank you for your submission. Your artwork will take up to 4 working days to review. Please feel free to contact us if you have any question</v-card-text>
+              <v-card-text style="text-align:justify">Your artwork will take up to 4 working days to review. Please feel free to contact us if you have any questions in the meantime</v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="green darken-1" flat
@@ -188,8 +188,11 @@ export default {
       }
       this.$store.dispatch('newSubmission', submissionData)
       this.submissionCompleted = true
-      // console.log(event) -- SOMEHOW RESET THE BLASTED FORM!
-      // event.target.reset()
+      // Reset the form - event.target.reset() does not work. So we're doing it the old fashion way.
+      this.artistName = ''
+      this.artworkTitle = ''
+      this.artDescription = ''
+      this.imageUrl = null
     }
   },
   computed: {
@@ -203,9 +206,6 @@ export default {
       } else if (this.currentUser.id !== null) {
         this.lockDialog = false
       }
-    },
-    submittedData () {
-      return this.$store.getters.submittedData
     }
   }
 }
