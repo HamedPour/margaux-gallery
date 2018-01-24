@@ -50,7 +50,7 @@
   export default {
     methods: {
       toArtistWorks (id) {
-        return this.$router.push('/gallery/' + id)
+        return this.$router.push('/exhibition')
       }
     },
     computed: {

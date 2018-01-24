@@ -3,7 +3,11 @@
     <v-layout>
     <v-flex xs12 sm10 xl8  offset-sm1 offset-xl2>
       <v-card >
-        <v-card-media :src="galleryItem.imgSrc" height="55vh">
+        <v-card-media
+          :src="galleryItem.imgSrc"
+          style="cursor:pointer"
+          @click="imageFullscreen"
+          height="55vh">
         </v-card-media>
         <v-card-title primary-title>
           <div class="text-xs-center" style="margin: 0 auto">
@@ -38,15 +42,47 @@
       </v-card>
     </v-flex>
   </v-layout>
+
+  <v-layout row justify-center>
+      <v-dialog v-model="fullImage" full-width>
+        <v-card>
+          <v-card-media
+            :src="galleryItem.imgSrc"
+            @click="fullImage = false"
+            height="100vh"
+            >
+            <v-spacer></v-spacer>
+            <h1 class="pr-3 pt-3">
+              <v-icon
+                  style="color:black; font-size:3.4rem; cursor:pointer"
+                  @click="fullImage = false"
+                >cancel
+              </v-icon>
+            </h1>
+          </v-card-media>
+        </v-card>
+      </v-dialog>
+    </v-layout>
+
   </v-container>
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      fullImage: false
+    }
+  },
   props: ['uid'],
   computed: {
     galleryItem () {
       return this.$store.getters.galleryItem(this.uid)
+    }
+  },
+  methods: {
+    imageFullscreen () {
+      this.fullImage = true
     }
   }
 }

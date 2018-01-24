@@ -52,36 +52,14 @@ export const store = new Vuex.Store({
     ],
     exhibitions2018: [
       {
-        month: 'January',
-        exhibitionDays: '14 - 18',
-        artist: 'Élisabeth vigée le brun',
-        artistBio: 'Born in Paris on 16 April 1755, Marie-Louise-Élisabeth Vigée was the daughter of a portraitist and fan painter, Louis Vigée, from whom she received her first instruction. Her mother, Jeanne (née Maissin), was a hairdresser.',
-        painting: 'the bather',
-        description: 'he general impression created by the Bather portrait is one of great serenity, enriched by a definite air of mystery. The serenity comes from the muted colour scheme, the soothing sfumato tonality, and the harmony created by the sitter\'s pyramid-shaped pose and understated drapery. '
+        title: 'rise of modernity',
+        season: 'Winter',
+        months: 'January - February'
       },
       {
-        month: 'February',
-        exhibitionDays: '19 - 28',
-        artist: 'Berthe Morisot',
-        artistBio: 'Morisot was born in Bourges, France, into an affluent bourgeois family. Her father, Edmé Tiburce Morisot, was the prefect (senior administrator) of the department of Cher. He also studied architecture at École des Beaux Arts. Her mother, Marie-Joséphine-Cornélie Thomas, was the great-niece of Jean-Honoré Fragonard, one of the most prolific Rococo painters of the ancien régime.',
-        painting: 'the garden at bougival',
-        description: 'The portrait shows the subject sitting upright and sideways in a chair, with her face and chest turned slightly towards the viewer: a posture derived from the \'pyramid\' image used to depict a sitting Madonna. Her left arm sits comfortably on the armrest of the chair and is clasped by the hand of her right arm which crosses her front.'
-      },
-      {
-        month: 'March',
-        exhibitionDays: '2 - 23',
-        artist: 'Nicolas Poussin',
-        artistBio: 'Nicolas Poussin was the leading painter of the classical French Baroque style, although he spent most of his working life in Rome. Most of his works were on religious and mythological subjects painted for a small group of Italian and French collectors.',
-        painting: 'landscape with diogenes',
-        description: 'Whereas the mood of the London Landscape with a Man Killed by a Snake is intentionally severe, the Landscape with Diogenes in the Louvre is much lighter in tone and mood. In it the well-known story of Diogenes, the humble philosopher, is depicted. Rejecting all worldly goods, he even throws away his last remaining possession, his drinking cup, when he sees a man drinking water from a stream by cupping his hands. '
-      },
-      {
-        month: 'April',
-        exhibitionDays: '14 - 28',
-        artist: 'Eugène Delacroix',
-        artistBio: 'Eugène Delacroix was born on 26 April 1798 at Charenton-Saint-Maurice in Île-de-France, near Paris. His mother was named Victoire, daughter of the cabinet-maker Jean-François Oeben. He had three much older siblings.',
-        painting: 'liberty leading the people',
-        description: 'Delacroix depicted Liberty as both an allegorical goddess-figure and a robust woman of the people. The mound of corpses acts as a kind of pedestal from which Liberty strides, barefoot and bare-breasted, out of the canvas and into the space of the viewer. The Phrygian cap she wears had come to symbolize liberty during the first French Revolution.'
+        title: 'age of trump',
+        season: 'Spring',
+        months: 'April - Jun'
       }
     ],
     theNews: [
