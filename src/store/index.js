@@ -17,6 +17,7 @@ export const store = new Vuex.Store({
       artworkURL: null,
       id: null
     },
+    artistBank: [],
     galleryData: [
       {
         uid: '001',
@@ -104,6 +105,16 @@ export const store = new Vuex.Store({
         artworkURL: payload.artImage,
         id: payload.id
       }
+    },
+    artistBank (state, payload) {
+      state.artistBank.push({
+        id: payload.uid,
+        artistName: payload.artistName,
+        artworkTitle: payload.artworkTitle,
+        artistDetails: payload.artistDetails,
+        artistPortraitImage: payload.portraitImage,
+        artworkImage: payload.artworkImage
+      })
     }
   },
   // -------------------------------------------------------------------ACTIONS
@@ -151,12 +162,23 @@ export const store = new Vuex.Store({
         .catch(error => {
           console.log(error)
         })
+    },
+    newArtist ({commit}, payload) {
+      // send to firebase
+      // get uid
+      // add uid to artistBank -> commit
+      commit('artistBank', {
+        ...payload, uid: 'usyfidfhsdjfk'
+      })
     }
   },
   // -------------------------------------(To Send to Comp)-------------GETTERS
   getters: {
     user (state) {
       return state.user
+    },
+    artistBank (state) {
+      return state.artistBank
     },
     galleryData (state) {
       return state.galleryData.sort((A, B) => {

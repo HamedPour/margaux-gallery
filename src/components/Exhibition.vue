@@ -11,6 +11,7 @@
               >{{item.season}}</v-btn>
           </div>
           <v-divider></v-divider>
+          <h1>Under ReConstruction</h1>
           <!-- Add coresponding image for each season -->
           <!-- New Component -->
         </div>

@@ -10,6 +10,10 @@ import GalleryItem from '@/components/GalleryItem'
 import Submission from '@/components/Submission'
 import Admin from '@/components/Admin'
 
+// Router Guards
+import AdminGuard from './admin-guard'
+// =============
+
 Vue.use(Router)
 
 export default new Router({
@@ -53,7 +57,8 @@ export default new Router({
     {
       path: '/admin',
       name: 'Admin',
-      component: Admin
+      component: Admin,
+      beforeEnter: AdminGuard
     },
     {
       path: '/contact',
