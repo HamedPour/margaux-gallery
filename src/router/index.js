@@ -8,6 +8,7 @@ import Gallery from '@/components/Gallery'
 import Contact from '@/components/Contact'
 import GalleryItem from '@/components/GalleryItem'
 import Submission from '@/components/Submission'
+import Admin from '@/components/Admin'
 
 Vue.use(Router)
 
@@ -48,6 +49,11 @@ export default new Router({
       path: '/submission',
       name: 'Submission',
       component: Submission
+    },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: Admin
     },
     {
       path: '/contact',

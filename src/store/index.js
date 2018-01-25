@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     user: {
-      id: null
+      id: null,
+      admin: false
     },
     submissions: {
       artistName: null,
@@ -108,13 +109,23 @@ export const store = new Vuex.Store({
   // -------------------------------------------------------------------ACTIONS
   actions: {
     autoSignIn ({commit}, payload) {
-      commit('setUser', {id: payload.uid})
+      if (payload.uid === 'YgsX5fITGcSyjwiNhp2tX05ilA02') {
+        commit('setUser', {id: payload.uid, admin: true})
+      } else {
+        commit('setUser', {id: payload.uid, admin: false})
+      }
     },
     SignInUser ({commit}, playload) {
       firebase.auth().signInWithEmailAndPassword(playload.email, playload.password)
         .then(
           user => {
-            const newUser = {id: user.uid}
+            let newUser = {}
+            // is user an Admin
+            if (user.uid === 'YgsX5fITGcSyjwiNhp2tX05ilA02') {
+              newUser = {id: user.uid, admin: true}
+            } else {
+              newUser = {id: user.uid}
+            }
             commit('setUser', newUser)
           }
         )
@@ -124,7 +135,7 @@ export const store = new Vuex.Store({
     },
     SignOutUser ({commit}) {
       firebase.auth().signOut()
-      commit('setUser', null)
+      commit('setUser', {id: null, admin: false})
     },
     newSubmission ({commit}, payload) {
       // send data to firebase

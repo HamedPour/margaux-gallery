@@ -197,7 +197,11 @@ export default {
   },
   computed: {
     currentUser () {
-      return this.$store.getters.user
+      if (this.$store.getters.user.admin === true) {
+        return this.$router.push('admin')
+      } else if (this.$store.getters.user.admin === false || this.$store.getters.user.admin === null) {
+        return this.$store.getters.user
+      }
     },
     checkUser () {
       if (this.currentUser === null || this.currentUser === undefined) {
