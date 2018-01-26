@@ -98,23 +98,10 @@ export const store = new Vuex.Store({
     },
     submissions (state, payload) {
       console.log(payload)
-      state.submissions = {
-        artistName: payload.artistName,
-        artworkTitle: payload.artworkTitle,
-        artDescription: payload.artDescription,
-        artworkURL: payload.artImage,
-        id: payload.id
-      }
+      state.submissions = payload
     },
     artistBank (state, payload) {
-      state.artistBank.push({
-        id: payload.uid,
-        artistName: payload.artistName,
-        artworkTitle: payload.artworkTitle,
-        artistDetails: payload.artistDetails,
-        artistPortraitImage: payload.portraitImage,
-        artworkImage: payload.artworkImage
-      })
+      state.artistBank.push({payload})
     }
   },
   // -------------------------------------------------------------------ACTIONS
@@ -150,12 +137,32 @@ export const store = new Vuex.Store({
     },
     newSubmission ({commit}, payload) {
       // send data to firebase
-      firebase.database().ref('submissions').push(payload)
+      const newsubmission = {
+        artistName: payload.artistName,
+        artworkTitle: payload.artworkTitle,
+        artDescription: payload.artDescription
+      }
+      let key
+      let imageUrl
+      firebase.database().ref('submissions').push(newsubmission)
         .then((data) => {
-          const key = data.key
-          console.log(data.key)
+          key = data.key
+          return key
+        })
+        .then(key => {
+          const imgFileName = payload.artImage.name
+          console.log(imgFileName)
+          const ext = imgFileName.slice(imgFileName.lastIndexOf('.'))
+          return firebase.storage().ref('submissions/' + key + '.' + ext).put(payload.artImage)
+        })
+        .then(fileData => {
+          imageUrl = fileData.metadata.downloadURLs[0]
+          return firebase.database().ref('submissions').child(key).update({imageUrl: imageUrl})
+        })
+        .then(() => {
           commit('submissions', {
-            ...payload,
+            ...newsubmission,
+            imageUrl: imageUrl,
             id: key
           })
         })
@@ -164,12 +171,69 @@ export const store = new Vuex.Store({
         })
     },
     newArtist ({commit}, payload) {
-      // send to firebase
-      // get uid
-      // add uid to artistBank -> commit
-      commit('artistBank', {
-        ...payload, uid: 'usyfidfhsdjfk'
-      })
+      let artist = {
+        artistName: payload.artistName,
+        artworkTitle: payload.artworkTitle,
+        artistDetails: payload.artistDetails
+      }
+      let key
+      let artworkURL
+      let portraitURL
+
+      function portImageUpload () {
+        firebase.database().ref('artistdatabase').push(null)
+          .then(data => {
+            key = data.key
+            return key
+          })
+          .then(key => {
+            const portImgName = payload.artistPortImage.name
+            const portExt = portImgName.slice(portImgName.lastIndexOf('.'))
+            return firebase.storage().ref('artistdatabase/' + key + '.' + portExt).put(payload.artistPortImage)
+          })
+          .then(fileData => {
+            console.log('filedata', fileData)
+            portraitURL = fileData.metadata.downloadURLs[0]
+            return firebase.database().ref('artistdatabase').child(key).update({portraitURL: portraitURL})
+          })
+          .then(() => {
+            artist = {
+              ...artist,
+              portraitURL: portraitURL
+            }
+          })
+          .catch(error => {
+            return console.log(error)
+          })
+        return artist
+      }
+      portImageUpload()
+
+      firebase.database().ref('artistdatabase').push(artist)
+        .then(data => {
+          key = data.key
+          return key
+        })
+        .then(key => {
+          const artImgName = payload.artImage.name
+          const artExt = artImgName.slice(artImgName.lastIndexOf('.'))
+          return firebase.storage().ref('artistdatabase/' + key + '.' + artExt).put(payload.artImage)
+        })
+        .then(fileData => {
+          console.log('filedata', fileData)
+          artworkURL = fileData.metadata.downloadURLs[0]
+          return firebase.database().ref('artistdatabase').child(key).update({artworkURL: artworkURL})
+        })
+        .then(() => {
+          commit('artistBank', {
+            ...artist,
+            artworkURL: artworkURL,
+            id: key
+          })
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   },
   // -------------------------------------(To Send to Comp)-------------GETTERS

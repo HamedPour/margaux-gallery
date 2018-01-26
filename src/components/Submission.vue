@@ -44,7 +44,7 @@
                         ref="hiddenBtn">
                     </v-flex>
                     <v-flex xs12>
-                      <img :src="imageUrl" width="100%">
+                      <img :src="imageBase64" width="100%">
                     </v-flex>
                   </v-layout>
                 </v-container>
@@ -141,8 +141,8 @@ export default {
       email: '',
       password: '',
       welcomeMsg: 'Welcome',
-      imageUrl: null,
-      rawImage: null,
+      imageBase64: null,
+      imageRaw: null,
       artistName: '',
       artworkTitle: '',
       artDescription: '',
@@ -174,17 +174,17 @@ export default {
       }
       const fileReader = new FileReader()
       fileReader.addEventListener('load', () => {
-        this.imageUrl = fileReader.result
+        this.imageBase64 = fileReader.result
       })
       fileReader.readAsDataURL(files[0])
-      this.rawImage = files[0]
+      this.imageRaw = files[0]
     },
     onSubmission (event) {
       const submissionData = {
         artistName: this.artistName,
         artworkTitle: this.artworkTitle,
         artDescription: this.artDescription,
-        artImage: this.imageUrl
+        artImage: this.imageRaw
       }
       this.$store.dispatch('newSubmission', submissionData)
       this.submissionCompleted = true
@@ -192,7 +192,8 @@ export default {
       this.artistName = ''
       this.artworkTitle = ''
       this.artDescription = ''
-      this.imageUrl = null
+      this.imageBase64 = ''
+      this.imageRaw = null
     }
   },
   computed: {

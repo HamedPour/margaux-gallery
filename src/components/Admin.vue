@@ -28,7 +28,7 @@
                 ></v-text-field>
               </v-flex>
               <v-flex xs12>
-                <v-text-field label="artist details" multi-line required></v-text-field>
+                <v-text-field label="artist details" v-model="artistDetails" multi-line required></v-text-field>
               </v-flex>
               <v-flex xs12 sm6>
                 <v-btn @click="choosePortrait">Upload Portrait</v-btn>
@@ -51,10 +51,10 @@
                   ref="arworkUploadBtn">
               </v-flex>
               <v-flex xs12 sm6>
-                <img width="100%" height="500px" :src="portraitImage">
+                <img width="100%" height="500px" :src="portImageBase64">
               </v-flex>
               <v-flex xs12 sm6>
-                <img width="100%" height="500px" :src="artworkImage" >
+                <img width="100%" height="500px" :src="artImageBase64" >
               </v-flex>
             </v-layout>
           </v-container>
@@ -79,10 +79,10 @@ export default {
       artistLastName: '',
       artworkTitle: '',
       artistDetails: '',
-      portraitImage: null,
-      portraitImageRaw: null,
-      artworkImage: null,
-      artworkImageRaw: null
+      portImageBase64: null,
+      portImageRaw: null,
+      artImageBase64: null,
+      artImageRaw: null
     }
   },
   methods: {
@@ -104,10 +104,10 @@ export default {
       }
       const fileReader = new FileReader()
       fileReader.addEventListener('load', () => {
-        this.portraitImage = fileReader.result
+        this.portImageBase64 = fileReader.result
       })
       fileReader.readAsDataURL(files[0])
-      this.portraitImageRaw = files[0]
+      this.portImageRaw = files[0]
     },
     onArtworkChosen (event) {
       const files = event.target.files
@@ -117,28 +117,28 @@ export default {
       }
       const fileReader = new FileReader()
       fileReader.addEventListener('load', () => {
-        this.artworkImage = fileReader.result
+        this.artImageBase64 = fileReader.result
       })
       fileReader.readAsDataURL(files[0])
-      this.artworkImageRaw = files[0]
+      this.artImageRaw = files[0]
     },
     onArtistFormSubmit () {
       const newArtistData = {
         artistName: `${this.artistFirstName} ${this.artistLastName}`,
         artworkTitle: this.artworkTitle,
         artistDetails: this.artistDetails,
-        artistPortraitImage: this.portraitImage,
-        artworkImage: this.artworkImage
+        artistPortImage: this.portImageRaw,
+        artImage: this.artImageRaw
       }
       this.$store.dispatch('newArtist', newArtistData)
       this.artistFirstName = ''
       this.artistLastName = ''
       this.artworkTitle = ''
       this.artistDetails = ''
-      this.portraitImage = ''
-      this.portraitImageRaw = null
-      this.artworkImage = ''
-      this.artworkImageRaw = null
+      this.portImageBase64 = ''
+      this.portImageRaw = null
+      this.artImageBase64 = ''
+      this.artImageRaw = null
     }
   },
   computed: {
