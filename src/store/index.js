@@ -18,40 +18,6 @@ export const store = new Vuex.Store({
       id: null
     },
     artistBank: [],
-    galleryData: [
-      {
-        uid: '001',
-        artistName: 'Eugène Delacroix',
-        artistImage: 'https://firebasestorage.googleapis.com/v0/b/vuejs-http-5e61e.appspot.com/o/artistPortraits%2FeugenePortrait.jpg?alt=media&token=247bdb0b-7159-49cd-994b-ea1aa285d125',
-        details: 'Ferdinand Victor Eugène Delacroix was a French Romantic artist regarded from the outset of his career as the leader of the French Romantic school.',
-        imgSrc: 'https://firebasestorage.googleapis.com/v0/b/vuejs-http-5e61e.appspot.com/o/galleryImages%2Fliberty.jpg?alt=media&token=0ce0b3d8-1763-492e-b10d-5032e8db2d9a',
-        workOnDisplay: 'liberty leading the people'
-      },
-      {
-        uid: '002',
-        artistName: 'Nicolas Poussin',
-        artistImage: 'https://firebasestorage.googleapis.com/v0/b/vuejs-http-5e61e.appspot.com/o/artistPortraits%2FnicolasPortrait.jpg?alt=media&token=5f5bf82d-a10c-4a3f-837d-e2865b595040',
-        details: 'Nicolas Poussin was the leading painter of the classical French Baroque style, although he spent most of his working life in Rome.',
-        imgSrc: 'https://firebasestorage.googleapis.com/v0/b/vuejs-http-5e61e.appspot.com/o/galleryImages%2Fdiogenes.jpg?alt=media&token=a79f5296-6e02-4037-81c9-eecf71a8ffdb',
-        workOnDisplay: 'landscape with diogenes'
-      },
-      {
-        uid: '003',
-        artistName: 'Élisabeth Vigée Le Brun',
-        artistImage: 'https://firebasestorage.googleapis.com/v0/b/vuejs-http-5e61e.appspot.com/o/artistPortraits%2FelisabethPortrait.jpg?alt=media&token=f80e1be3-9f06-4368-a567-27ecb12302d1',
-        details: 'Élisabeth Louise Vigée Le Brun, also known as Madame Lebrun, was a prominent French painter.',
-        imgSrc: 'https://firebasestorage.googleapis.com/v0/b/vuejs-http-5e61e.appspot.com/o/galleryImages%2Fbather.jpg?alt=media&token=9a829301-83f9-4102-b6f1-e6b0b06324cc',
-        workOnDisplay: 'the bather'
-      },
-      {
-        uid: '004',
-        artistName: 'Berthe Morisot',
-        artistImage: 'https://firebasestorage.googleapis.com/v0/b/vuejs-http-5e61e.appspot.com/o/artistPortraits%2FberthePortrait.jpg?alt=media&token=7dffa774-5e14-41e2-824e-9dbf6c05d195',
-        details: 'Berthe Marie Pauline Morisot was a painter and a member of the circle of painters in Paris who became known as the Impressionists.',
-        imgSrc: 'https://firebasestorage.googleapis.com/v0/b/vuejs-http-5e61e.appspot.com/o/galleryImages%2Fgarden.jpg?alt=media&token=9e562c6e-b7e9-4408-b7b9-f4b8ae43f61b',
-        workOnDisplay: 'the garden at bougival'
-      }
-    ],
     exhibitions2018: [
       {
         title: 'rise of modernity',
@@ -104,6 +70,13 @@ export const store = new Vuex.Store({
     },
     setupArtistBank (state, payload) {
       state.artistBank = payload
+    },
+    artistRemoved (state, payload) {
+      state.artistBank.forEach(item => {
+        if (item.id === payload) {
+          return state.artistBank.splice(item, 1)
+        }
+      })
     }
   },
   // -------------------------------------------------------------------ACTIONS
@@ -255,6 +228,16 @@ export const store = new Vuex.Store({
         .catch(error => {
           console.log(error)
         })
+    },
+    removeArtist ({commit}, payload) {
+      firebase.database().ref('artistdatabase').child(payload).remove()
+        .then(data => {
+          console.log(data)
+          commit('artistRemoved', payload)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   },
   // -------------------------------------(To Send to Comp)-------------GETTERS
@@ -263,17 +246,14 @@ export const store = new Vuex.Store({
       return state.user
     },
     artistBank (state) {
-      return state.artistBank
-    },
-    galleryData (state) {
-      return state.galleryData.sort((A, B) => {
+      return state.artistBank.sort((A, B) => {
         return A.artistName > B.artistName
       })
     },
-    galleryItem (state) {
+    artistBankItem (state) {
       return (itemID) => {
-        return state.galleryData.find((item) => {
-          return item.uid === itemID
+        return state.artistBank.find((item) => {
+          return item.id === itemID
         })
       }
     },

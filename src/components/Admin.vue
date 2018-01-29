@@ -1,9 +1,18 @@
 <template lang="html">
   <v-container>
+    <h1 class="display-2 text-xs-center fontCaps mt-5 mb-5">administrator portal</h1>
+    <v-layout  wrap mb-5>
+      <v-flex class="pa-2 " xs6 v-for="(item, index) in getArtistBank" :key="index">
+        <v-card class="text-xs-center pa-3">
+          <h1 class="title">{{(item.artistName).toUpperCase()}}</h1>
+          <h3 class="body-2 pb-3 pt-2">{{(item.artworkTitle).toUpperCase()}}</h3>
+          <img :src="item.artworkURL" width="80%" height="280px" alt="">
+          <v-btn small color="red" @click="removeArtist(item.id)">Remove</v-btn>
+        </v-card>
+      </v-flex>
+    </v-layout>
     <v-layout>
       <v-flex lg8 offset-lg2>
-        <h1 class="display-2 text-xs-center fontCaps mt-5 mb-5">administrator portal</h1>
-        <h5 v-for="(item, index) in getArtistBank">{{item.artistName}} - {{item.artworkTitle}}</h5>
         <form @submit.prevent = "onArtistFormSubmit">
           <v-card>
         <v-card-title>
@@ -54,19 +63,20 @@
                 <div v-if="portImageBase64">
                   <v-divider class="mt-4"></v-divider>
                   <h2 class="text-xs-center pt-4 mb-3 display-1">Artist Portrait</h2>
+                  <img width="100%" :src="portImageBase64" >
                 </div>
-                <img width="100%" :src="portImageBase64">
               </v-flex>
               <v-flex xs12 >
                 <div v-if="artImageBase64">
                   <h2 class="text-xs-center pa-3 display-1">Artwork</h2>
+                  <img width="100%" :src="artImageBase64" >
                 </div>
-                <img width="100%" :src="artImageBase64" >
               </v-flex>
             </v-layout>
           </v-container>
         </v-card-text>
         <v-card-actions>
+          <v-btn flat @click="onLogout">LogOut</v-btn>
           <v-spacer></v-spacer>
           <v-btn large color="blue darken-1" type="submit" flat>Submit</v-btn>
         </v-card-actions>
@@ -74,7 +84,6 @@
         </form>
       </v-flex>
     </v-layout>
-    <v-btn @click="onLogout">LogOut</v-btn>
   </v-container>
 </template>
 
@@ -146,6 +155,9 @@ export default {
       this.portImageRaw = null
       this.artImageBase64 = ''
       this.artImageRaw = null
+    },
+    removeArtist (id) {
+      this.$store.dispatch('removeArtist', id)
     }
   },
   computed: {

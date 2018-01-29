@@ -6,9 +6,7 @@
           <div>
             <v-btn
                 flat
-                v-for="(item, index) in exhibitionData"
-                key="index"
-              >{{item.season}}</v-btn>
+              >{{}}</v-btn>
           </div>
           <v-divider></v-divider>
           <h1>Under ReConstruction</h1>

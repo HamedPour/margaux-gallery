@@ -10,7 +10,7 @@
       <v-carousel-item
           transition="fade"
           v-for="(item,i) in galleryImages"
-          v-bind:src="item.imgSrc"
+          :src="item.artworkURL"
           :key="i">
           <router-link
             :to="{ name: 'Gallery'}"
@@ -34,7 +34,7 @@
   export default {
     computed: {
       galleryImages () {
-        return this.$store.getters.galleryData
+        return this.$store.getters.artistBank
       }
     }
   }

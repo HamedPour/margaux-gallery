@@ -4,7 +4,7 @@
     <v-flex xs12 sm10 xl8  offset-sm1 offset-xl2>
       <v-card >
         <v-card-media
-          :src="galleryItem.imgSrc"
+          :src="galleryItem.artworkURL"
           style="cursor:pointer"
           @click="imageFullscreen"
           height="55vh">
@@ -17,7 +17,7 @@
                     fontCaps
                     fontAdventPro
                     mb-4"
-            >{{galleryItem.workOnDisplay}}
+            >{{galleryItem.artworkTitle}}
             </h3>
             <h5
               class="mb-4
@@ -30,7 +30,7 @@
                     pr-5
                     pl-5
                     fontRoboCondens"
-            >{{galleryItem.details}}
+            >{{galleryItem.artistDetails}}
             </div>
           </div>
         </v-card-title>
@@ -47,7 +47,7 @@
       <v-dialog v-model="fullImage" full-width>
         <v-card>
           <v-card-media
-            :src="galleryItem.imgSrc"
+            :src="galleryItem.artworkURL"
             @click="fullImage = false"
             height="100vh"
             >
@@ -74,10 +74,10 @@ export default {
       fullImage: false
     }
   },
-  props: ['uid'],
+  props: ['id'],
   computed: {
     galleryItem () {
-      return this.$store.getters.galleryItem(this.uid)
+      return this.$store.getters.artistBankItem(this.id)
     }
   },
   methods: {

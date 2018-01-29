@@ -12,9 +12,9 @@
               <v-flex >
                 <v-card flat>
                   <v-card-media
-                    :src="artist.artistImage"
+                    :src="artist.portraitURL"
                     style="width: 100%;min-height: 300px; cursor:pointer"
-                    @click="toArtistWorks(artist.uid)"
+                    @click="toArtistWorks(artist.id)"
                   >
                   </v-card-media>
                   <h1
@@ -33,9 +33,9 @@
                               pt-4
                               pb-4
                               text-xs-center"
-                    >artwork: {{artist.workOnDisplay}}
+                    >artwork: {{artist.artworkTitle}}
                   </h3>
-                  <p class="text-xs-center pr-3 pl-3">{{artist.details}}</p>
+                  <p class="text-xs-center pr-3 pl-3">{{artist.artistDetails}}</p>
                 </v-card>
               </v-flex>
           </v-layout>
@@ -55,7 +55,7 @@
     },
     computed: {
       galleryData () {
-        return this.$store.getters.galleryData
+        return this.$store.getters.artistBank
       }
     }
   }

@@ -19,8 +19,8 @@
                     <v-parallax
                       height="300"
                       style="cursor:pointer"
-                      @click="toGalleryItem(item.uid)"
-                      :src="item.imgSrc">
+                      @click="toGalleryItem(item.id)"
+                      :src="item.artworkURL">
                     </v-parallax>
                   </v-card>
                 </v-flex>
@@ -37,18 +37,18 @@
                     <div>
                       <div>
                         <h5 class="headline fontCaps fontAdventPro pl-3">
-                          {{item.workOnDisplay}}
+                          {{item.artworkTitle}}
                         </h5>
                       </div>
                     </div>
                     <div>
                       <p class="pr-3 pl-3 mt-1 subheading fontRoboCondens fontJustify">
-                        {{item.details}}
+                        {{item.artistDetails}}
                       </p>
                     </div>
                     <v-card-actions>
                       <v-spacer></v-spacer>
-                      <v-btn @click="toGalleryItem(item.uid)" right>
+                      <v-btn @click="toGalleryItem(item.id)" right>
                         View
                       </v-btn>
                     </v-card-actions>
@@ -69,13 +69,13 @@
       }
     },
     methods: {
-      toGalleryItem (uid) {
-        this.$router.push('/gallery/' + uid)
+      toGalleryItem (id) {
+        this.$router.push('/gallery/' + id)
       }
     },
     computed: {
       galleryData () {
-        return this.$store.getters.galleryData
+        return this.$store.getters.artistBank
       }
     }
   }
