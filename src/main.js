@@ -29,6 +29,7 @@ new Vue({
       projectId: 'vuejs-http-5e61e',
       storageBucket: 'vuejs-http-5e61e.appspot.com'
     })
+    this.$store.dispatch('pullArtistBank')
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.$store.dispatch('autoSignIn', user)

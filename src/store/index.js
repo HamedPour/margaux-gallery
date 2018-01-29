@@ -97,15 +97,38 @@ export const store = new Vuex.Store({
       state.user = payload
     },
     submissions (state, payload) {
-      console.log(payload)
       state.submissions = payload
     },
     artistBank (state, payload) {
-      state.artistBank.push({payload})
+      state.artistBank.push(payload)
+    },
+    setupArtistBank (state, payload) {
+      state.artistBank = payload
     }
   },
   // -------------------------------------------------------------------ACTIONS
   actions: {
+    pullArtistBank ({commit}) {
+      firebase.database().ref('artistdatabase').once('value')
+        .then(data => {
+          let artistData = []
+          let obj = data.val()
+          for (let key in obj) {
+            artistData.push({
+              id: key,
+              artistName: obj[key].artistName,
+              artworkTitle: obj[key].artworkTitle,
+              artistDetails: obj[key].artistDetails,
+              artworkURL: obj[key].artworkURL,
+              portraitURL: obj[key].portraitURL
+            })
+          }
+          commit('setupArtistBank', artistData)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    },
     autoSignIn ({commit}, payload) {
       if (payload.uid === 'YgsX5fITGcSyjwiNhp2tX05ilA02') {
         commit('setUser', {id: payload.uid, admin: true})
@@ -151,7 +174,6 @@ export const store = new Vuex.Store({
         })
         .then(key => {
           const imgFileName = payload.artImage.name
-          console.log(imgFileName)
           const ext = imgFileName.slice(imgFileName.lastIndexOf('.'))
           return firebase.storage().ref('submissions/' + key + '.' + ext).put(payload.artImage)
         })
@@ -192,7 +214,6 @@ export const store = new Vuex.Store({
             return firebase.storage().ref('artistdatabase/' + key + '.' + portExt).put(payload.artistPortImage)
           })
           .then(fileData => {
-            console.log('filedata', fileData)
             portraitURL = fileData.metadata.downloadURLs[0]
             return firebase.database().ref('artistdatabase').child(key).update({portraitURL: portraitURL})
           })
@@ -220,7 +241,6 @@ export const store = new Vuex.Store({
           return firebase.storage().ref('artistdatabase/' + key + '.' + artExt).put(payload.artImage)
         })
         .then(fileData => {
-          console.log('filedata', fileData)
           artworkURL = fileData.metadata.downloadURLs[0]
           return firebase.database().ref('artistdatabase').child(key).update({artworkURL: artworkURL})
         })
@@ -228,6 +248,7 @@ export const store = new Vuex.Store({
           commit('artistBank', {
             ...artist,
             artworkURL: artworkURL,
+            portraitURL: portraitURL,
             id: key
           })
         })

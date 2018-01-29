@@ -3,7 +3,7 @@
     <v-layout>
       <v-flex lg8 offset-lg2>
         <h1 class="display-2 text-xs-center fontCaps mt-5 mb-5">administrator portal</h1>
-        {{getArtistBank}}
+        <h5 v-for="(item, index) in getArtistBank">{{item.artistName}} - {{item.artworkTitle}}</h5>
         <form @submit.prevent = "onArtistFormSubmit">
           <v-card>
         <v-card-title>
@@ -50,18 +50,25 @@
                   @change="onArtworkChosen"
                   ref="arworkUploadBtn">
               </v-flex>
-              <v-flex xs12 sm6>
-                <img width="100%" height="500px" :src="portImageBase64">
+              <v-flex xs12 >
+                <div v-if="portImageBase64">
+                  <v-divider class="mt-4"></v-divider>
+                  <h2 class="text-xs-center pt-4 mb-3 display-1">Artist Portrait</h2>
+                </div>
+                <img width="100%" :src="portImageBase64">
               </v-flex>
-              <v-flex xs12 sm6>
-                <img width="100%" height="500px" :src="artImageBase64" >
+              <v-flex xs12 >
+                <div v-if="artImageBase64">
+                  <h2 class="text-xs-center pa-3 display-1">Artwork</h2>
+                </div>
+                <img width="100%" :src="artImageBase64" >
               </v-flex>
             </v-layout>
           </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" type="submit" flat>Submit</v-btn>
+          <v-btn large color="blue darken-1" type="submit" flat>Submit</v-btn>
         </v-card-actions>
       </v-card>
         </form>
