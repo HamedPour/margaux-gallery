@@ -16,6 +16,12 @@
                     style="width: 100%;min-height: 300px; cursor:pointer"
                     @click="toArtistWorks(artist.id)"
                   >
+                  <div v-if="loading" style="width:100%; text-align:center">
+                    <span style="position:relative; top: 40%">
+                      <v-progress-circular indeterminate :size="50" :width="7" color="primary">
+                      </v-progress-circular>
+                    </span>
+                  </div>
                   </v-card-media>
                   <h1
                       class="
@@ -56,6 +62,9 @@
     computed: {
       galleryData () {
         return this.$store.getters.artistBank
+      },
+      loading () {
+        return this.$store.getters.loading
       }
     }
   }

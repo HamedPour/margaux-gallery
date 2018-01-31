@@ -31,7 +31,7 @@ export const store = new Vuex.Store({
       'spring': {
         title: 'age of trump',
         months: 'April - Jun',
-        exhibitionImg: 'src/assets/images/paris.jpg',
+        exhibitionImg: 'src/assets/images/trump.jpg',
         location: 'new york',
         description: 'Displaying works by contemporary artist on the decline of American politics and society',
         openToPublic: false
