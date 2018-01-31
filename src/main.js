@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import AlertComp from './components/Shared/Alert.vue'
 
 import '@/styles/master.scss'
 import Vuetify from 'vuetify'
@@ -12,6 +13,7 @@ import router from './router'
 import {store} from './store/index.js'
 Vue.use(Vuetify)
 
+Vue.component('app-alert', AlertComp)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

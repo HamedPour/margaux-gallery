@@ -18,44 +18,27 @@ export const store = new Vuex.Store({
       id: null
     },
     artistBank: [],
-    exhibitions2018: [
-      {
+    exhibitions2018: {
+      'winter': {
         title: 'rise of modernity',
-        season: 'Winter',
-        months: 'January - February'
+        months: 'January - February',
+        exhibitionImg: 'src/assets/images/winterTrees.jpg',
+        location: 'paris',
+        description: 'Displaying great works of art by prominent French artists of modernity',
+        openToPublic: true
+
       },
-      {
+      'spring': {
         title: 'age of trump',
-        season: 'Spring',
-        months: 'April - Jun'
+        months: 'April - Jun',
+        exhibitionImg: 'src/assets/images/paris.jpg',
+        location: 'new york',
+        description: 'Displaying works by contemporary artist on the decline of American politics and society',
+        openToPublic: false
       }
-    ],
-    theNews: [
-      {
-        uid: 'fuovhloesrhglkjbvz',
-        imgUrl: '/src/assets/images/winterTrees.jpg',
-        author: 'Ed O\'Raiely',
-        title: 'The Globe Theator opens display great french works of art of the 19th century',
-        urlToImage: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Gallery_of_Old_European_Painting_NMW.jpg',
-        publishedDate: '2018-01-12'
-      },
-      {
-        uid: 'iuizurhg87zyz',
-        imgUrl: '/src/assets/images/winterTrees.jpg',
-        author: 'Jack Bakerstreet',
-        title: 'Opening of the great Chateau Library in Paris',
-        urlToImage: 'https://upload.wikimedia.org/wikipedia/commons/b/be/Muzeum_Narodowe_w_Warszawie_Galeria_Sztuki_XIX_wieku.JPG',
-        publishedDate: '2018-01-22'
-      },
-      {
-        uid: 'ou7y87ysygdifygfdy',
-        imgUrl: '/src/assets/images/winterTrees.jpg',
-        author: 'Havash Naseem',
-        title: 'Rise of the Machines: Trump to make wall to against robots',
-        urlToImage: 'https://upload.wikimedia.org/wikipedia/commons/5/57/Gardiner_Art_Gallery.JPG',
-        publishedDate: '2018-01-29'
-      }
-    ]
+    },
+    loading: false,
+    error: null
   },
   // -----------------------------------------------------------------MUTATIONS
   mutations: {
@@ -77,13 +60,24 @@ export const store = new Vuex.Store({
           return state.artistBank.splice(item, 1)
         }
       })
+    },
+    setLoading (state, payload) {
+      state.loading = payload
+    },
+    setError (state, payload) {
+      state.error = payload
     }
   },
   // -------------------------------------------------------------------ACTIONS
   actions: {
     pullArtistBank ({commit}) {
+      commit('setLoading', true)
+      commit('setError', null)
       firebase.database().ref('artistdatabase').once('value')
         .then(data => {
+          setTimeout(function () {
+            commit('setLoading', false)
+          }, 500)
           let artistData = []
           let obj = data.val()
           for (let key in obj) {
@@ -99,6 +93,8 @@ export const store = new Vuex.Store({
           commit('setupArtistBank', artistData)
         })
         .catch(error => {
+          commit('setLoading', false)
+          commit('setError', error)
           console.log(error)
         })
     },
@@ -110,9 +106,12 @@ export const store = new Vuex.Store({
       }
     },
     SignInUser ({commit}, playload) {
+      commit('setLoading', true)
+      commit('setError', null)
       firebase.auth().signInWithEmailAndPassword(playload.email, playload.password)
         .then(
           user => {
+            commit('setLoading', false)
             let newUser = {}
             // is user an Admin
             if (user.uid === 'YgsX5fITGcSyjwiNhp2tX05ilA02') {
@@ -124,6 +123,8 @@ export const store = new Vuex.Store({
           }
         )
         .catch(error => {
+          commit('setLoading', false)
+          commit('setError', error)
           console.log(error)
         })
     },
@@ -140,8 +141,11 @@ export const store = new Vuex.Store({
       }
       let key
       let imageUrl
+      commit('setLoading', true)
+      commit('setError', null)
       firebase.database().ref('submissions').push(newsubmission)
         .then((data) => {
+          commit('setLoading', false)
           key = data.key
           return key
         })
@@ -162,6 +166,8 @@ export const store = new Vuex.Store({
           })
         })
         .catch(error => {
+          commit('setLoading', false)
+          commit('setError', error)
           console.log(error)
         })
     },
@@ -176,8 +182,11 @@ export const store = new Vuex.Store({
       let portraitURL
 
       function portImageUpload () {
+        commit('setLoading', true)
+        commit('setError', null)
         firebase.database().ref('artistdatabase').push(null)
           .then(data => {
+            commit('setLoading', false)
             key = data.key
             return key
           })
@@ -197,14 +206,18 @@ export const store = new Vuex.Store({
             }
           })
           .catch(error => {
+            commit('setLoading', false)
+            commit('setError', error)
             return console.log(error)
           })
         return artist
       }
       portImageUpload()
-
+      commit('setLoading', true)
+      commit('setError', null)
       firebase.database().ref('artistdatabase').push(artist)
         .then(data => {
+          commit('setLoading', false)
           key = data.key
           return key
         })
@@ -226,6 +239,8 @@ export const store = new Vuex.Store({
           })
         })
         .catch(error => {
+          commit('setLoading', false)
+          commit('setError', error)
           console.log(error)
         })
     },
@@ -238,6 +253,9 @@ export const store = new Vuex.Store({
         .catch(error => {
           console.log(error)
         })
+    },
+    clearError ({commit}) {
+      commit('setError', null)
     }
   },
   // -------------------------------------(To Send to Comp)-------------GETTERS
@@ -260,15 +278,11 @@ export const store = new Vuex.Store({
     exhibition2018 (state) {
       return state.exhibitions2018
     },
-    theNews (state) {
-      return state.theNews
+    loading (state) {
+      return state.loading
     },
-    theNewsItem (state) {
-      return (itemID) => {
-        return state.theNews.find((item) => {
-          return item.uid === itemID
-        })
-      }
+    errorStatus (state) {
+      return state.error
     }
   }
 })

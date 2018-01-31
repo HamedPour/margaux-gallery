@@ -1,7 +1,7 @@
 <template lang="html">
   <v-container class="gallery">
     <v-flex mt-4>
-      <h1 class="gallery--mainTitle text-xs-center fontAdventPro">Gallery</h1>
+      <h1 class="display-3 text-xs-center fontAdventPro">Gallery</h1>
       <v-divider></v-divider>
     </v-flex>
     <v-layout>
@@ -21,6 +21,12 @@
                       style="cursor:pointer"
                       @click="toGalleryItem(item.id)"
                       :src="item.artworkURL">
+                      <div style="text-align:center"  v-if="loading">
+                        <span>
+                          <v-progress-circular indeterminate :size="70" :width="7" color="primary">
+                          </v-progress-circular>
+                        </span>
+                      </div>
                     </v-parallax>
                   </v-card>
                 </v-flex>
@@ -76,6 +82,9 @@
     computed: {
       galleryData () {
         return this.$store.getters.artistBank
+      },
+      loading () {
+        return this.$store.getters.loading
       }
     }
   }

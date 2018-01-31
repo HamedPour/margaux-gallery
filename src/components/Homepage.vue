@@ -6,6 +6,7 @@
           hide-delimiters
           hide-controls
           lazy
+          v-if="!loading"
           >
       <v-carousel-item
           transition="fade"
@@ -27,6 +28,18 @@
       </v-carousel-item>
     </v-carousel>
 
+    <v-flex xs12 v-else class="pageCover">
+      <h1 class="pageCover--title">LOADING GALLERY
+        <div  >
+          <span >
+            <v-progress-circular indeterminate :size="80" :width="6" color="primary">
+            </v-progress-circular>
+          </span>
+        </div>
+      </h1>
+
+    </v-flex>
+
   </div>
 </template>
 
@@ -35,6 +48,9 @@
     computed: {
       galleryImages () {
         return this.$store.getters.artistBank
+      },
+      loading () {
+        return this.$store.getters.loading
       }
     }
   }

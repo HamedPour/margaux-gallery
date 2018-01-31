@@ -83,6 +83,10 @@
     {{checkUser}}
       <v-layout>
         <v-dialog v-model="lockDialog" persistent max-width="400">
+          <v-flex row>
+            <app-alert v-if="error" :text="error.message" @dismissed="onDismissed">
+            </app-alert>
+          </v-flex>
           <v-flex style="text-align:center">
             <h1
             v-if="!lockDialog"
@@ -162,6 +166,7 @@ export default {
     },
     onLogout () {
       this.$store.dispatch('SignOutUser')
+      this.lockDialog = true
     },
     onUpload () {
       this.$refs.hiddenBtn.click()
@@ -194,6 +199,10 @@ export default {
       this.artDescription = ''
       this.imageBase64 = ''
       this.imageRaw = null
+    },
+    onDismissed () {
+      console.log('dismissed Alert')
+      this.$store.dispatch('clearError')
     }
   },
   computed: {
@@ -211,6 +220,9 @@ export default {
       } else if (this.currentUser.id !== null) {
         this.lockDialog = false
       }
+    },
+    error () {
+      return this.$store.getters.errorStatus
     }
   }
 }

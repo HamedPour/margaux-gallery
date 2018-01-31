@@ -98,7 +98,6 @@
         navItems: [
           {title: 'Artists', path: '/artists'},
           {title: 'Exhibition', path: '/exhibition'},
-          {title: 'News', path: '/news'},
           {title: 'Gallery', path: '/gallery'},
           {title: 'Submission', path: '/submission'},
           {title: 'Contact', path: '/contact'}

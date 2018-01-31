@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import Homepage from '@/components/Homepage'
 import Artists from '@/components/Artists'
 import Exhibition from '@/components/Exhibition'
-import News from '@/components/News'
 import Gallery from '@/components/Gallery'
 import Contact from '@/components/Contact'
 import GalleryItem from '@/components/GalleryItem'
@@ -32,11 +31,6 @@ export default new Router({
       path: '/exhibition',
       name: 'Exhibition',
       component: Exhibition
-    },
-    {
-      path: '/news',
-      name: 'News',
-      component: News
     },
     {
       path: '/gallery',
