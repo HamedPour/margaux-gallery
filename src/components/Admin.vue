@@ -104,6 +104,7 @@ export default {
   methods: {
     onLogout () {
       this.$store.dispatch('SignOutUser')
+      this.$store.dispatch('clearError')
       this.$router.push('submission')
     },
     choosePortrait () {

@@ -22,7 +22,7 @@ export const store = new Vuex.Store({
       'winter': {
         title: 'rise of modernity',
         months: 'January - February',
-        exhibitionImg: 'src/assets/images/winterTrees.jpg',
+        exhibitionImg: 'src/assets/images/modernity.jpg',
         location: 'paris',
         description: 'Displaying great works of art by prominent French artists of modernity',
         openToPublic: true
@@ -30,10 +30,26 @@ export const store = new Vuex.Store({
       },
       'spring': {
         title: 'age of trump',
-        months: 'April - Jun',
+        months: 'April - June',
         exhibitionImg: 'src/assets/images/trump.jpg',
         location: 'new york',
         description: 'Displaying works by contemporary artist on the decline of American politics and society',
+        openToPublic: false
+      },
+      'summer': {
+        title: 'renaissance of the mind',
+        months: 'July - September',
+        exhibitionImg: 'src/assets/images/michel.jpg',
+        location: 'london',
+        description: 'Displaying prominent works by artist capturing mathematics in the visual arts.',
+        openToPublic: false
+      },
+      'autumn': {
+        title: 'explosion of colours',
+        months: 'October - December',
+        exhibitionImg: 'src/assets/images/fall.jpg',
+        location: 'Tokyo',
+        description: 'Displaying colourful art pieces by prominent Japans artist in celebration of the Autumn Festival,  Tsukimi.',
         openToPublic: false
       }
     },
@@ -55,10 +71,8 @@ export const store = new Vuex.Store({
       state.artistBank = payload
     },
     artistRemoved (state, payload) {
-      state.artistBank.forEach(item => {
-        if (item.id === payload) {
-          return state.artistBank.splice(item, 1)
-        }
+      state.artistBank.filter(item => {
+        return item.id !== payload
       })
     },
     setLoading (state, payload) {
@@ -247,7 +261,7 @@ export const store = new Vuex.Store({
     removeArtist ({commit}, payload) {
       firebase.database().ref('artistdatabase').child(payload).remove()
         .then(data => {
-          console.log(data)
+          console.log(payload)
           commit('artistRemoved', payload)
         })
         .catch(error => {

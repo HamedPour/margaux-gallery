@@ -21,7 +21,7 @@
               </v-layout>
             </v-container>
           </v-card-media>
-            <div class="text-xs-center">
+            <div class="text-xs-center" style="min-height: 270px">
               <h5 class="grey--text headline mt-4">{{item.months}}</h5><br>
               <span class="headline">{{item.location.toUpperCase()}}</span><br>
             <h5 class="mt-2 pa-3 fontAdventPro" style="font-size:1.4rem; letter-spacing:0.3rem">{{item.description}}</h5>
