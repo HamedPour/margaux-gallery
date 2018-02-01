@@ -19,10 +19,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/margaux-gallery/'
-    },
-    {
-      path: '/margaux-gallery/',
       name: 'Homepage',
       component: Homepage
     },
