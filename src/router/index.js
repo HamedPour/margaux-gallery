@@ -18,6 +18,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/margaux-gallery/',
+      redirect: '/'
+    },
+    {
       path: '/',
       name: 'Homepage',
       component: Homepage

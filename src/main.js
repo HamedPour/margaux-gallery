@@ -23,7 +23,7 @@ new Vue({
   store,
   template: '<App/>',
   components: { App },
-  beforeMount () {
+  created () {
     firebase.initializeApp({
       apiKey: 'AIzaSyBo9UyAdi8o-KBghoyjbjZQ6zEDaA23dks',
       authDomain: 'vuejs-http-5e61e.firebaseapp.com',
