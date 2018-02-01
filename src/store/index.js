@@ -22,7 +22,7 @@ export const store = new Vuex.Store({
       'winter': {
         title: 'rise of modernity',
         months: 'January - February',
-        exhibitionImg: 'src/assets/images/modernity.jpg',
+        exhibitionImg: 'https://firebasestorage.googleapis.com/v0/b/vuejs-http-5e61e.appspot.com/o/exhibitions%2Fmodernity.jpg?alt=media&token=2623eef5-bd9f-45ce-b05f-5de67eaabde8',
         location: 'paris',
         description: 'Displaying great works of art by prominent French artists of modernity',
         openToPublic: true
@@ -31,7 +31,7 @@ export const store = new Vuex.Store({
       'spring': {
         title: 'age of trump',
         months: 'April - June',
-        exhibitionImg: 'src/assets/images/trump.jpg',
+        exhibitionImg: 'https://firebasestorage.googleapis.com/v0/b/vuejs-http-5e61e.appspot.com/o/exhibitions%2Ftrump.jpg?alt=media&token=06e677fb-9487-4e5a-8df7-06993f0cdcac',
         location: 'new york',
         description: 'Displaying works by contemporary artist on the decline of American politics and society',
         openToPublic: false
@@ -39,7 +39,7 @@ export const store = new Vuex.Store({
       'summer': {
         title: 'renaissance of the mind',
         months: 'July - September',
-        exhibitionImg: 'src/assets/images/michel.jpg',
+        exhibitionImg: 'https://firebasestorage.googleapis.com/v0/b/vuejs-http-5e61e.appspot.com/o/exhibitions%2Fmichel.jpg?alt=media&token=83ac6c20-b90a-4175-b4be-2349bf417fa2',
         location: 'london',
         description: 'Displaying prominent works by artist capturing mathematics in the visual arts.',
         openToPublic: false
@@ -47,7 +47,7 @@ export const store = new Vuex.Store({
       'autumn': {
         title: 'explosion of colours',
         months: 'October - December',
-        exhibitionImg: 'src/assets/images/fall.jpg',
+        exhibitionImg: 'https://firebasestorage.googleapis.com/v0/b/vuejs-http-5e61e.appspot.com/o/exhibitions%2Ffall.jpg?alt=media&token=ed0a9016-b12e-4926-ad49-7133d7ecd3d1',
         location: 'Tokyo',
         description: 'Displaying colourful art pieces by prominent Japans artist in celebration of the Autumn Festival,  Tsukimi.',
         openToPublic: false
