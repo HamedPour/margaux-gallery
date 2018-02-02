@@ -43,25 +43,27 @@
     </v-flex>
   </v-layout>
 
-  <v-layout row justify-center>
-      <v-dialog v-model="fullImage" full-width>
-        <v-card>
-          <v-card-media
-            :src="galleryItem.artworkURL"
-            @click="fullImage = false"
-            height="100vh"
-            >
-            <v-spacer></v-spacer>
-            <h1 class="pr-3 pt-3">
-              <v-icon
-                  style="color:black; font-size:3.4rem; cursor:pointer"
-                  @click="fullImage = false"
-                >cancel
-              </v-icon>
-            </h1>
-          </v-card-media>
-        </v-card>
-      </v-dialog>
+  <v-layout>
+      <v-flex>
+        <v-dialog v-model="fullImage" >
+          <v-card>
+            <v-card-media
+              :src="galleryItem.artworkURL"
+              @click="fullImage = false"
+              :height="imageHight + 'vh'"
+              >
+              <v-spacer></v-spacer>
+              <h1 class="pr-3 pt-3">
+                <v-icon
+                    style="color:black; font-size:3.4rem; cursor:pointer"
+                    @click="fullImage = false"
+                  >cancel
+                </v-icon>
+              </h1>
+            </v-card-media>
+          </v-card>
+        </v-dialog>
+      </v-flex>
     </v-layout>
 
   </v-container>
@@ -71,7 +73,8 @@
 export default {
   data () {
     return {
-      fullImage: false
+      fullImage: false,
+      imageHight: '180'
     }
   },
   props: ['id'],
@@ -83,6 +86,13 @@ export default {
   methods: {
     imageFullscreen () {
       this.fullImage = true
+      if (window.innerWidth >= 1350) {
+        this.imageHight = '200'
+      } else if (window.innerWidth < 1350 && window.innerWidth >= 800) {
+        this.imageHight = '110'
+      } else if (window.innerWidth < 800) {
+        this.imageHight = '40'
+      }
     }
   }
 }

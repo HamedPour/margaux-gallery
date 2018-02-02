@@ -10,6 +10,8 @@
           <v-card-media
             class="white--text"
             height="250px"
+            style="cursor:pointer"
+            @click="directMe(item.openToPublic)"
             :src="item.exhibitionImg"
           >
             <v-container fill-height fluid>
@@ -26,12 +28,12 @@
               <span class="headline">{{item.location.toUpperCase()}}</span><br>
             <h5 class="mt-2 pa-3 fontAdventPro" style="font-size:1.4rem; letter-spacing:0.3rem">{{item.description}}</h5>
             <v-btn flat v-if="item.openToPublic" to="/gallery" color="primary">Gallery</v-btn>
-            <v-btn flat v-else="item.openToPublic" @click="dialog=true" color="primary">Bookings</v-btn>
+            <v-btn flat v-else="item.openToPublic" @click="dialog=true" color="primary">details</v-btn>
             <div>
               <v-dialog v-model="dialog" max-width="290" value="true">
                     <v-card>
-                      <v-card-title class="headline">Gallery Booking</v-card-title>
-                      <v-card-text>For VIP tickets  please contact head of sales. Public viewing will begin at the end of the month.
+                      <v-card-title class="headline">Opening Soon</v-card-title>
+                      <v-card-text style="text-align:justify">We apologies for the wait. This gallery is currently closed to the public. For VIP tickets please contact the gallery director, René Lefèvre.
                       </v-card-text>
                       <v-btn @click="dialog=false" flat>close</v-btn>
                     </v-card>
@@ -55,6 +57,15 @@ export default {
   computed: {
     exhibitionData () {
       return this.$store.getters.exhibition2018
+    }
+  },
+  methods: {
+    directMe (isItOpen) {
+      if (isItOpen === true) {
+        return this.$router.push('/gallery')
+      } else {
+        this.dialog = true
+      }
     }
   }
 }
