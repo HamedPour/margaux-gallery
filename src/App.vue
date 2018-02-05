@@ -83,7 +83,11 @@
       <!-- Footer -->
       <v-footer class="footer pa-4">
         <v-spacer></v-spacer>
-        <div>Hamed Pour © {{ new Date().getFullYear() }}</div>
+        <div><a href="https://hamedpour.github.io/myWebsite/"
+          style="text-decoration:none; color: black"
+          >
+          Hamed Pour</a> © {{ new Date().getFullYear() }}
+        </div>
         <v-spacer></v-spacer>
       </v-footer>
 </div>

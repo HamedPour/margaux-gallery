@@ -8,9 +8,9 @@
       <v-flex  xs12 md6 xl3 v-for="(artist, index) in galleryData" :key="index">
         <v-card>
         <v-container>
-          <v-layout style="height:580px" row wrap>
+          <v-layout  row wrap>
               <v-flex >
-                <v-card flat>
+                <v-card style="height:550px" flat>
                   <v-card-media
                     :src="artist.portraitURL"
                     style="width: 100%;min-height: 300px; cursor:pointer"
@@ -41,9 +41,12 @@
                               text-xs-center"
                     >artwork: {{artist.artworkTitle}}
                   </h3>
-                  <p class="text-xs-center pr-3 pl-3">{{artist.artistDetails}}</p>
+                  <p  class="text-xs-center pr-3 pl-3">{{artist.artistDetails}}</p>
                 </v-card>
               </v-flex>
+              <v-spacer></v-spacer>
+              <v-btn flat color="primary" @click="toArtistWorks(artist.id)">Artwork</v-btn>
+              <v-spacer></v-spacer>
           </v-layout>
         </v-container>
       </v-card>
@@ -56,7 +59,7 @@
   export default {
     methods: {
       toArtistWorks (id) {
-        return this.$router.push('/exhibition')
+        return this.$router.push('/gallery/' + id)
       }
     },
     computed: {
@@ -69,6 +72,3 @@
     }
   }
 </script>
-
-<style lang="css">
-</style>
