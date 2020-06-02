@@ -13,14 +13,6 @@
   - Love the NoSQL JSON database structure.
   - Added auth for normal user and admin support to edit both the Vuex $store and the database.
 
-## Authors
-
-* **Hamed Pour** - *VueFriend* - [HamedPour](https://github.com/HamedPour)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
 ## Acknowledgments
 
 * Mart Rossmaa - for being a great mentor with hilarious rants.
